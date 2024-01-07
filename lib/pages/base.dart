@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/bottomnav.dart';
 
 class base extends StatefulWidget {
   const base({Key? key}) : super(key: key);
@@ -12,6 +13,7 @@ class _baseState extends State<base> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("base of app"),),
+      body: NavigationBarApp(),
 
 
 

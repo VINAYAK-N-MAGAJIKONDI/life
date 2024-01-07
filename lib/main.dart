@@ -33,6 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return MaterialApp(
       home: homepage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
