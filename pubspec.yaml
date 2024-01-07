@@ -31,6 +31,12 @@ dependencies:
   flutter:
     sdk: flutter
 
+  connectivity_plus:
+  firebase_core: ^2.14.0 # Use a version compatible with both firebase_auth and taxipaxi
+  firebase_auth: ^4.6.3
+  firebase_storage:
+  firebase_database:
+  sign_in_button:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

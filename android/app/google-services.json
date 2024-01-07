@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "18534472639",
+    "project_id": "lifeunderwater-f982b",
+    "storage_bucket": "lifeunderwater-f982b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:18534472639:android:fa58c49ba41b25c3605f0a",
+        "android_client_info": {
+          "package_name": "com.example.life"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpZ4CcX6p00RVL0bu5LvS5Dmmhtfr4Y_Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
