@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'userinfo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import '../pages/chat.dart';
 
 class NavigationBarApp extends StatelessWidget {
   const NavigationBarApp({super.key});
@@ -68,6 +68,10 @@ class _NavigationExampleState extends State<NavigationExample> {
 
             label: '',
           ),
+          NavigationDestination(
+            icon: Icon(Icons.chat),
+            label: '',
+          ),
         ],
       ),
       body: _buildCurrentPage(),
@@ -82,6 +86,8 @@ class _NavigationExampleState extends State<NavigationExample> {
         return _homePage();
       case 2:
         return _libPage();
+      case 3:
+        return _chat();
       default:
         return Container(); // Handle other cases if needed
     }
@@ -103,6 +109,13 @@ class _NavigationExampleState extends State<NavigationExample> {
       child: Scaffold(
         body: Text(" library"),
       ),
+    );
+  }
+
+  Widget _chat() {
+    return Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Ai(),
     );
   }
 }

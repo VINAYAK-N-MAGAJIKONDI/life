@@ -11,12 +11,6 @@ class base extends StatefulWidget {
 class _baseState extends State<base> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("base of app"),),
-      body: NavigationBarApp(),
-
-
-
-    );
+    return NavigationBarApp();
   }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'pages/home.dart';
+import 'package:flutter_gemini/flutter_gemini.dart';
+
 
 
 
@@ -10,6 +12,7 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  Gemini.init(apiKey: "AIzaSyCx6S4TLaj3PiE1GWc8ZhzWNa2erqp1eQo");
   runApp(const MyHomePage(title: 'My app',));
 }
 
