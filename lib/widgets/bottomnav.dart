@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'userinfo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../pages/chat.dart';
+import '../pages/marketplace.dart';
+import '../pages/homepage.dart';
 
 class NavigationBarApp extends StatelessWidget {
   const NavigationBarApp({super.key});
@@ -83,40 +85,19 @@ class _NavigationExampleState extends State<NavigationExample> {
       case 0:
         return UserInfoWidget(user: _user);
       case 1:
-        return _homePage();
+        return homepage();
       case 2:
-        return _libPage();
+        return marketplace();
       case 3:
-        return _chat();
+        return Ai();
       default:
         return Container(); // Handle other cases if needed
     }
   }
 
-  Widget _homePage() {
-    return Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Scaffold(
-        body: Text(" home"),
 
-      ),
-    );
-  }
 
-  Widget _libPage() {
-    return Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Scaffold(
-        body: Text(" library"),
-      ),
-    );
-  }
 
-  Widget _chat() {
-    return Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Ai(),
-    );
-  }
+
 }
 
