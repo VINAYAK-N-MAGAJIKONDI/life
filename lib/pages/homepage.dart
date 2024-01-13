@@ -9,11 +9,29 @@ class homepage extends StatefulWidget {
 class _homepageState extends State<homepage> {
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Scaffold(
-        body: Text(" home page anagha works onlyyyy here "),
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Home Page'),
+        backgroundColor: Colors.indigoAccent,
+      ),
+      body: Row(
+        children: [
+          ElevatedButton(onPressed:() { },
+              child: Text('PROFILE'),
+          ),
+          ElevatedButton(onPressed: () {},
+              child: Text('MARKETPLACE'),
+          ),
+          ElevatedButton(onPressed: () {},
+              child: Text('RECYCLE LOCATIONS'),
+          ),
+          ElevatedButton(onPressed: () {},
+          child: Text('EDUCATIONAL RESOURCES'),
+          ),
 
+
+        ],
       ),
     );
   }
