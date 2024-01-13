@@ -15,7 +15,9 @@ class _homepageState extends State<homepage> {
         title: Text('Home Page'),
         backgroundColor: Colors.indigoAccent,
       ),
-      body: Row(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ElevatedButton(onPressed:() { },
               child: Text('PROFILE'),
