@@ -66,7 +66,7 @@ class _NavigationExampleState extends State<NavigationExample> {
             label: '',
           ),
           NavigationDestination(
-            icon: Icon(Icons.my_library_books_rounded),
+            icon: Icon(Icons.shopping_cart),
 
             label: '',
           ),

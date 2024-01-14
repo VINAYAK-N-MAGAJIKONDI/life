@@ -20,7 +20,7 @@ class UserInfoWidget extends StatelessWidget {
           ),
           SizedBox(height: 16.0),
           Text(
-            user?.displayName ?? "",
+            user?.displayName ?? "User Name",
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -28,7 +28,7 @@ class UserInfoWidget extends StatelessWidget {
           ),
           SizedBox(height: 8.0),
           Text(
-            user?.email ?? "",
+            user?.email ?? "UserEmail@gmail.com",
             style: TextStyle(
               fontSize: 16,
               color: Colors.grey,
