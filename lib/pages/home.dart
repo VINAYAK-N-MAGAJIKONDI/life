@@ -5,8 +5,6 @@ import 'base.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:google_sign_in/google_sign_in.dart';
 
-
-
 class homepage extends StatefulWidget {
   const homepage({Key? key}) : super(key: key);
 
@@ -15,7 +13,6 @@ class homepage extends StatefulWidget {
 }
 
 class _homepageState extends State<homepage> {
-
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   User? _user;
@@ -31,27 +28,51 @@ class _homepageState extends State<homepage> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _user != null? base() : base()//_googleSigninbutton(),
+      body: _user != null ? base() : base()//signinpage(),
+    );
+  }
 
+  Widget signinpage() {
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+                '../lib/assets/images/under.jpg'), // Replace with your image asset path
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: _googleSigninbutton(),
+      ),
     );
   }
 
   Widget _googleSigninbutton() {
     return Center(
-
-      child: SizedBox(
-        height: 50,
-        child: SignInButton(
-          Buttons.google , text:" Google Sign up " , onPressed: _handlegsign,
-        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'MATSYAM',
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              color: Colors.white, // Change the color to aqua theme
+            ),
+          ),
+          SizedBox(height: 20),
+          SignInButton(
+            Buttons.google,
+            text: " Google Sign up ",
+            onPressed: _handlegsign,
+          ),
+        ],
       ),
     );
   }
-
 
 // I'm Anagha.
   void _handlegsign() async {
@@ -61,7 +82,8 @@ class _homepageState extends State<homepage> {
       // Check if the platform is web
       if (kIsWeb) {
         print("Signing in with popup...");
-        UserCredential userCredential = await _auth.signInWithPopup(_googleprovider);
+        UserCredential userCredential =
+            await _auth.signInWithPopup(_googleprovider);
         print("Signed in with popup");
         User? user = userCredential.user;
 
@@ -71,13 +93,15 @@ class _homepageState extends State<homepage> {
       } else {
         print("Signing in on Android...");
         final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-        final GoogleSignInAuthentication googleAuth = await googleUser!.authentication;
+        final GoogleSignInAuthentication googleAuth =
+            await googleUser!.authentication;
         final AuthCredential credential = GoogleAuthProvider.credential(
           accessToken: googleAuth.accessToken,
           idToken: googleAuth.idToken,
         );
 
-        UserCredential userCredential = await _auth.signInWithCredential(credential);
+        UserCredential userCredential =
+            await _auth.signInWithCredential(credential);
         print("Signed in on Android");
         User? user = userCredential.user;
 
@@ -89,6 +113,7 @@ class _homepageState extends State<homepage> {
       print("Error signing in: $error");
     }
   }
+
   Future<User?> signInWithGoogle() async {
     try {
       // Trigger the Google Sign In process
@@ -100,7 +125,8 @@ class _homepageState extends State<homepage> {
       }
 
       // Obtain GoogleSignInAuthentication
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
 
       // Create a new credential using the GoogleSignInAuthentication
       final AuthCredential credential = GoogleAuthProvider.credential(
@@ -109,7 +135,8 @@ class _homepageState extends State<homepage> {
       );
 
       // Sign in to Firebase with the Google credential
-      final UserCredential userCredential = await _auth.signInWithCredential(credential);
+      final UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
       print("Signed in on Android");
       User? user = userCredential.user;
 
@@ -123,8 +150,4 @@ class _homepageState extends State<homepage> {
       return null;
     }
   }
-
-
-
-
 }

@@ -7,7 +7,7 @@ class MapsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Maps Page'),
       ),
-      body: Center(),
+      body: maps(),
     );
   }
 }
