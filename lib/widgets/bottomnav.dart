@@ -85,13 +85,13 @@ class _NavigationExampleState extends State<NavigationExample> {
       case 0:
         return UserInfoWidget(user: _user);
       case 1:
-        return homepage();
+        return Homepage();
       case 2:
         return MarketplacePage();
       case 3:
         return Ai();
       default:
-        return homepage(); // Handle other cases if needed
+        return Homepage(); // Handle other cases if needed
     }
   }
 

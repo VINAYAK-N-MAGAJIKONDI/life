@@ -1,92 +1,97 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'map.dart';
-
-class homepage extends StatefulWidget {
-  const homepage({Key? key}) : super(key: key);
+import 'art.dart';
+class Homepage extends StatefulWidget {
+  const Homepage({Key? key}) : super(key: key);
 
   @override
-  State<homepage> createState() => _homepageState();
+  State<Homepage> createState() => _HomepageState();
 }
 
-class _homepageState extends State<homepage> {
+class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor:
-        Colors.blueAccent, // Set the background color to aqua blue
+        backgroundColor: Colors.blueAccent,
         title: Text(
           'Discover Projects',
           style: TextStyle(
-            fontWeight: FontWeight.bold, // Set text to bold
-            color: Colors.white, // Set text color to white
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           InkWell(
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => CleanupLocationsScreen()),
+                MaterialPageRoute(builder: (context) => CleanupLocationsScreen()),
               );
-              // Do something when the button is tapped
             },
-            child: Ink.image(
-              image: NetworkImage(
-                  'https://i.imgur.com/Pf1B3Q1.jpeg'), // Use AssetImage to load the image
+            child: Image.network(
+              'https://i.imgur.com/Pf1B3Q1.jpeg',
               fit: BoxFit.contain,
               width: 300,
               height: 150,
             ),
           ),
-          Center(
-            child: InkWell(
-              onTap: () {
-                // Do something when the button is tapped
-              },
-              child: Ink.image(
-                image: NetworkImage(
-                    'https://www.carnegiefoundation.org/wp-content/uploads/2022/03/New-Bizz-Featured-Image.png'),
-                fit: BoxFit.cover,
-                width: 200,
-                height: 100,
-              ),
-            ),
-          ),
-          Center(
-            child: InkWell(
-              onTap: () {
-                // Do something when the button is tapped
-              },
-              child: Ink.image(
-                image: NetworkImage(
-                    'https://www.carnegiefoundation.org/wp-content/uploads/2022/03/New-Bizz-Featured-Image.png'),
-                fit: BoxFit.cover,
-                width: 200,
-                height: 100,
-              ),
-            ),
-          ),
-          Center(
-            child: InkWell(
-              onTap: () {
-                // do something when the button is pressed
-              },
-              child: Stack(
+          SizedBox(height: 5),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image(
-                    image: NetworkImage(
-                        'https://static.vecteezy.com/system/resources/previews/000/412/173/non_2x/people-with-education-related-icons-vector.jpg'), //education
-                    width: 200,
-                    height: 100,
+                  Text(
+                    'Arts and Crafts',
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
+
+                    ),
                   ),
                 ],
               ),
+              TextButton(
+                onPressed: () {
+                  // Implement the action when the button is pressed
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => art()),
+    );
+    },
+
+                style: TextButton.styleFrom(
+                  textStyle: TextStyle(
+                    color: Colors.blueAccent,
+                  ),
+                ),
+                child: Text('View All'),
+              ),
+            ],
+          ),
+          CarouselSlider(
+            items: [
+              Image.network(
+                'https://live.staticflickr.com/3484/3824082777_e5b41152dc_n.jpg',
+                fit: BoxFit.cover,
+              ),
+              // Add more images as needed
+            ],
+            options: CarouselOptions(
+              height: 180,
+              aspectRatio: 16 / 8,
+              viewportFraction: 0.8,
+              autoPlay: true,
+              autoPlayInterval: Duration(seconds: 5),
+              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              reverse: true,
             ),
           ),
         ],
