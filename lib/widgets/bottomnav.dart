@@ -26,7 +26,7 @@ class NavigationExample extends StatefulWidget {
 }
 
 class _NavigationExampleState extends State<NavigationExample> {
-  int currentPageIndex = 0;
+  int currentPageIndex = 1;
   User? _user;
 
   @override
@@ -91,7 +91,7 @@ class _NavigationExampleState extends State<NavigationExample> {
       case 3:
         return Ai();
       default:
-        return Container(); // Handle other cases if needed
+        return homepage(); // Handle other cases if needed
     }
   }
 
