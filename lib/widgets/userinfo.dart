@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../pages/userstat.dart';
 
 class UserInfoWidget extends StatelessWidget {
   final User? user;
@@ -54,19 +55,7 @@ class UserInfoWidget extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                margin: EdgeInsets.only(bottom: 16.0),
-                child: Text(
-                  "Additional Content Goes Here",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
+            child: Userstat(),
           ),
         ],
       ),

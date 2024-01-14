@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'maps.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-
+import 'map.dart';
 class homepage extends StatefulWidget {
   const homepage({Key? key}) : super(key: key);
 
@@ -25,11 +25,30 @@ class _homepageState extends State<homepage> {
             ),
           ),
         ),
+
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CleanupLocationsScreen()),
+              );
+              // Do something when the button is tapped
+            },
+            child: Ink.image(
+              image: NetworkImage('https://i.imgur.com/Pf1B3Q1.jpeg'), // Use AssetImage to load the image
+              fit: BoxFit.contain,
+              width: 300,
+              height: 150,
+
+            ),
+
+          ),
+          Center(
+            child: InkWell(
               onTap: () {
                 Navigator.push(
                   context,
@@ -38,7 +57,7 @@ class _homepageState extends State<homepage> {
                 // Do something when the button is tapped
               },
             ),
-            Text('ART AND CRAFTS:'),
+    ),
             ListView(
               children: [
                 SizedBox(height: 80,),

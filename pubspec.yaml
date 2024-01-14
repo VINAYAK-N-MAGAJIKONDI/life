@@ -32,6 +32,7 @@ dependencies:
     sdk: flutter
   carousel_slider: ^4.2.1
 
+  url_launcher: ^6.0.6
   connectivity_plus:
   firebase_core: ^2.14.0 # Use a version compatible with both firebase_auth and taxipaxi
   firebase_auth: ^4.6.3
