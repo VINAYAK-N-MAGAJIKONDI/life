@@ -34,7 +34,7 @@ class _homepageState extends State<homepage> {
               // Do something when the button is tapped
             },
             child: Ink.image(
-              image: AssetImage('../lib/assets/images/download.jpg'), // Use AssetImage to load the image
+              image: NetworkImage('https://i.imgur.com/Pf1B3Q1.jpeg'), // Use AssetImage to load the image
               fit: BoxFit.contain,
               width: 300,
               height: 150,
