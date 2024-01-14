@@ -59,20 +59,20 @@ class _NavigationExampleState extends State<NavigationExample> {
           NavigationDestination(
             selectedIcon: Icon(Icons.account_circle_outlined),
             icon: Icon(Icons.account_circle),
-            label: '',
+            label: 'Profile',
           ),
           NavigationDestination(
             icon: Icon(Icons.home),
-            label: '',
+            label: 'Home',
           ),
           NavigationDestination(
             icon: Icon(Icons.shopping_cart),
 
-            label: '',
+            label: 'Shop',
           ),
           NavigationDestination(
             icon: Icon(Icons.chat),
-            label: '',
+            label: 'Ai Chat',
           ),
         ],
       ),
