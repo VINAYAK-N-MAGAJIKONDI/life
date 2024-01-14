@@ -87,7 +87,7 @@ class _NavigationExampleState extends State<NavigationExample> {
       case 1:
         return homepage();
       case 2:
-        return marketplace();
+        return MarketplacePage();
       case 3:
         return Ai();
       default:
