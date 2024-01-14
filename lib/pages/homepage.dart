@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'maps.dart';
+
+import 'map.dart';
 class homepage extends StatefulWidget {
   const homepage({Key? key}) : super(key: key);
 
@@ -29,7 +30,7 @@ class _homepageState extends State<homepage> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MapsPage()),
+                MaterialPageRoute(builder: (context) => CleanupLocationsScreen()),
               );
               // Do something when the button is tapped
             },
