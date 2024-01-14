@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'map.dart';
 import 'art.dart';
+import 'edu.dart';
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
 
@@ -82,6 +83,15 @@ class _HomepageState extends State<Homepage> {
                 'https://live.staticflickr.com/3484/3824082777_e5b41152dc_n.jpg',
                 fit: BoxFit.cover,
               ),
+              Image.network('https://media.istockphoto.com/id/908255262/photo/traditional-moroccan-market-with-souvenirs.webp?b=1&s=170667a&w=0&k=20&c=fjiXOH2EuAR4BhVZXJBpsQgtd1ssQ15MgrMfsIgw45o=',
+              fit: BoxFit.cover,
+              ),
+              Image.network('https://media.istockphoto.com/id/517377154/photo/elephant-toys-in-the-shop.webp?b=1&s=170667a&w=0&k=20&c=kJoY1Yh9mOmk0xma7SFBM7FetZ8hoeV8AHJ2ZWHV_OI=',
+                fit: BoxFit.cover,
+              ),
+              Image.network('https://images.unsplash.com/photo-1606689518099-4437c5dd3b21?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTh8MTE0Nzg5MHx8ZW58MHx8fHx8',
+                fit: BoxFit.cover,
+              ),
               // Add more images as needed
             ],
             options: CarouselOptions(
@@ -93,6 +103,40 @@ class _HomepageState extends State<Homepage> {
               autoPlayAnimationDuration: Duration(milliseconds: 800),
               reverse: true,
             ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    ' Educational Resources',
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
+
+                    ),
+                  ),
+                ],
+              ),
+              TextButton(
+                onPressed: () {
+                  // Implement the action when the button is pressed
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => edu()),
+                  );
+                },
+
+                style: TextButton.styleFrom(
+                  textStyle: TextStyle(
+                    color: Colors.blueAccent,
+                  ),
+                ),
+                child: Text('View All'),
+              ),
+            ],
           ),
         ],
       ),
