@@ -19,14 +19,25 @@ class _homepageState extends State<homepage> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ElevatedButton(onPressed:() { },
-              child: Text('PROFILE'),
+          InkWell(
+          onTap: () {
+      // do something when the button is pressed
+    },
+            child: Stack(
+          children: [
+               Image(
+                 image: NetworkImage('https://t3.ftcdn.net/jpg/00/35/84/88/160_F_35848809_NDtD2U8xbxDL1TW4e2qWR1HX0ZIi12aF.jpg'),
+                  width: 300,
+                  height: 100,
+             ),
+            ],
+          ),
           ),
           ElevatedButton(onPressed: () {},
-              child: Text('MARKETPLACE'),
+              child: Text('JOIN A COMMUNITY'),
           ),
           ElevatedButton(onPressed: () {},
-              child: Text('RECYCLE LOCATIONS'),
+              child: Text('RECYCLE PLASTIC'),
           ),
           ElevatedButton(onPressed: () {},
           child: Text('EDUCATIONAL RESOURCES'),
