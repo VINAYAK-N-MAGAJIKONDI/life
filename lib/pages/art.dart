@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-class art extends StatefulWidget {
+class art extends StatelessWidget {
+  var height,width;
    art({Key? key}) : super(key: key);
 
    List imgData = [
@@ -22,96 +23,16 @@ class art extends StatefulWidget {
   ];
 
   @override
-  State<art> createState() => _artState();
-}
-
- class _artState extends State<art> {
-  @override
   Widget build(BuildContext context) {
+    height= MediaQuery.of(context).size.height;
+    width= MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Arts and crafts"),
+        title: Text("Arts and crafts"+'\n'
+            "Plastics-fee products"),
       ),
       body: Container(
-        color: Colors.indigo,
-        child: Column(
-          children: [
-            Container(
-              decoration: BoxDecoration(),
-              height: 100,
-              width: 150,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                      padding: EdgeInsets.only(
-                        top: 35,
-                        left: 20,
-                        right: 20,
-                      ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                        onTap: () {},
-                        child: Icon(
-                          Icons.sort,
-                          color: Colors.white,
-                          size: 40,
-                        ),
-                      ),
-                      Container(
-                        height: 50,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                  ),
-                  Padding(padding: EdgeInsets.only(
-                    top: 20,
-                  left: 30,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                          "Explore",
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w300,
-                        letterSpacing: 1,
-                      ),
-                      ),
-                      SizedBox(height: 10),
-                      Text("Eco-friendly products",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white54,
-                        letterSpacing: 1,
-                      ),
-                      )
-                    ],
-                  ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
-                ),
-              ),
-              height: 100,
-              width: 150,
-              child: GridView.builder(
+        child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 1.1,
@@ -119,7 +40,7 @@ class art extends StatefulWidget {
                   ),
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
-                itemCount: 6,
+                itemCount: imgData.length,
                 itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {},
@@ -127,7 +48,7 @@ class art extends StatefulWidget {
                         margin: EdgeInsets.symmetric(vertical: 8, horizontal: 15),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Colors.white,
+                          color: Colors.blue.shade300,
                           boxShadow: [
                             BoxShadow(color: Colors.black26,
                             spreadRadius: 1,
@@ -138,8 +59,8 @@ class art extends StatefulWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Image.asset(imgData[index],
-                            width: 100,
+                            Image.network(imgData[index],
+                            width: 110,
                             ),
                             Text(
                               titles[index],
@@ -155,10 +76,6 @@ class art extends StatefulWidget {
                 },
                   ),
             ),
-          ],
-        ),
-      ),
-
     );
   }
 }
