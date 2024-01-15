@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'eco.dart';
 import 'package:flutter/material.dart';
 class art extends StatelessWidget {
   var height,width;
@@ -9,7 +10,6 @@ class art extends StatelessWidget {
     "https://i1.wp.com/archpot.com/wp-content/uploads/2018/10/large-planters-pots-large-terracotta-pots-planter-garden-planter-pots.jpg?ssl=1",
     "https://images.unsplash.com/photo-1527385352018-3c26dd6c3916?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGp1dGUlMjBiYWdzfGVufDB8fDB8fHww",
     "https://th.bing.com/th/id/R.5007267fa912049a2fdd229ba1834a1a?rik=HNuOjAJ8OkQBCQ&riu=http%3a%2f%2fnewkilpatrickblog.typepad.com%2ffiles%2fclothblank.jpg&ehk=BcEVoQ2uiliVnytlA53LoJZYCVB8Rkumc28CTwj%2flxo%3d&risl=&pid=ImgRaw&r=0",
-    "https://static.vecteezy.com/system/resources/previews/012/658/341/original/dollar-currency-icon-symbol-usd-sign-on-the-gold-format-png.png",
     "https://i0.wp.com/1.bp.blogspot.com/-Uk6d8QyrkBM/UIT9RyUYFmI/AAAAAAAAAeA/lCa4UeQ3YxI/s1600/ideas.jpg",
    ];
 
@@ -18,7 +18,6 @@ class art extends StatelessWidget {
     "Pottery",
     "Carry Bags",
     "Clothing",
-    "Sell Your Products",
     "DIY",
   ];
 
@@ -43,7 +42,12 @@ class art extends StatelessWidget {
                 itemCount: imgData.length,
                 itemBuilder: (context, index) {
                     return InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => eco()),
+                        );
+                      },
                       child: Container(
                         margin: EdgeInsets.symmetric(vertical: 8, horizontal: 15),
                         decoration: BoxDecoration(
