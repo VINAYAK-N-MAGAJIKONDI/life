@@ -7,7 +7,7 @@ class art extends StatefulWidget {
   State<art> createState() => _artState();
 }
 
-class _artState extends State<art> {
+ class _artState extends State<art> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,57 +15,85 @@ class _artState extends State<art> {
         title: Text("Arts and crafts"),
       ),
       body: ListView(
-        padding: EdgeInsets.zero,
+        padding: EdgeInsets.symmetric(horizontal: 15),
         children: [
-          Container(
-            color: Theme.of(context).primaryColor,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(100)
-                )
-              ),
-              child: GridView.count(
-                shrinkWrap: true,
-                crossAxisCount: 2,
-              children: [
-                itemDashboard('Videos', CupertinoIcons.play_rectangle, Colors.deepOrange)
+          GridView.builder(
+            physics: const ScrollPhysics(),
+            padding: EdgeInsets.zero,
+            shrinkWrap: true,
+            itemCount: 10,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                childAspectRatio: 1,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                crossAxisCount: 2),
+            itemBuilder: (context, index) =>
+                SizedBox(
+                  height: 206,
+                  child: Column(
+                    children: [
+                      Flexible(
+                        flex: 1,
+                        child: Stack(children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(6),
+                            child: Image.network(
+                              'https://picsum.photos/id/$index/165/135',
+                              width: 165,
+                              height: 135,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Positioned(
+                            top: 10,
+                            right: 10,
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle, color: Colors.white),
+                              width: 32,
+                              height: 32,
+                              child: IconButton(
+                                  padding: EdgeInsets.zero,
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    Icons.more_horiz,
+                                    size: 25,
+                                  )),
+                            ),
+                          )
+                        ]),
+                      ),
+                      const SizedBox(
+                        height: 11,
+                      ),
+                      Text(
+                          'Suede Chukka Boots',
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .titleMedium),
 
-              ],),
-            ),
-          )
+                      Text(
+                          'River Island',
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .titleMedium),
+                      Text(
+                          '79.00',
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .titleMedium),
+                    ],
+                  ),
+                ),
+          ),
+
         ],
-      )
+      ),
+
     );
   }
-  itemDashboard(String title, IconData iconData, Color background) => Container(
-    decoration: BoxDecoration(
-      color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            offset: const Offset(00, 5),
-            color: Theme.of(context).primaryColor.withOpacity(.2),
-            spreadRadius: 2,
-            blurRadius: 5
-          )
-        ]
-  ),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: background,
-            shape: BoxShape.circle
-          ),
-          child: Icon(iconData, color: Colors.white),
-        ),
-        const SizedBox( height: 8),
-        Text(title, style: Theme.of(context).textTheme.titleMedium,)
-      ],
-    ),
-  );
 }
+
