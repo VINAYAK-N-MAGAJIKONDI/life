@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'map.dart';
 import 'art.dart';
-import 'edu.dart';
 import 'plastic.dart';
 import 'appuses.dart';
 import 'resources.dart';
@@ -39,7 +38,8 @@ class _HomepageState extends State<Homepage> {
           ),
         ),
       ),
-      body: Column(
+      body:SingleChildScrollView(
+        child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -137,13 +137,12 @@ class _HomepageState extends State<Homepage> {
               ),
             ],
           ),
-
-              Container(
+          Container(
               child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: 2.0,
-                  mainAxisSpacing: 25,
+                  crossAxisCount: 1,
+                  childAspectRatio: 2.8,
+                  mainAxisSpacing: 0.56,
                   ),
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
@@ -163,10 +162,10 @@ class _HomepageState extends State<Homepage> {
                         margin: EdgeInsets.symmetric (vertical: 20, horizontal: 12),
 
                       child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                         Image.network(imageUrls[index],
-                  width: 112,
+                  width: 115,
                   ),
                         Text(
                   titles[index],
@@ -183,8 +182,11 @@ class _HomepageState extends State<Homepage> {
     ),
 
     ),
+
+
     ],
     ),
+      ),
       );
   }
 }
