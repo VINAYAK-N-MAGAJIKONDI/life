@@ -138,6 +138,58 @@ class _HomepageState extends State<Homepage> {
               ),
             ],
           ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              // First Row: Plastic Pollution and Its Impact
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Text(
+                  'Plastic Pollution and Its Impact',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(
+                  'Plastic pollution is a global environmental issue.',
+                  textAlign: TextAlign.start,
+                ),
+              ),
+
+              // Second Row: App and Its Uses
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Text(
+                  'App and Its Uses',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(
+                  'Provides information on plastic pollution, recycling tips, and many more',
+                  textAlign: TextAlign.start,
+                ),
+              ),
+
+              // Third Row: Further Resources and Education
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Text(
+                  'Further Resources and Education',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(
+                  'Explore our educational resources, articles, and videos.',
+                  textAlign: TextAlign.start,
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
