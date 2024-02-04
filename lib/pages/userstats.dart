@@ -1,101 +1,66 @@
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 
+
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('My Profile'),
-        // Remove the IconButton below to remove the logout button
-        // actions: [
-        //   IconButton(
-        //     icon: Icon(Icons.logout),
-        //     onPressed: () {
-        //       // Logout logic here
-        //     },
-        //   ),
-        // ],
-      ),
-      body: Column(
+
+      body: SingleChildScrollView(
+        child: Column(
           children: [
-      const ListTile(
-      leading: Icon(Icons.account_circle),
-      title: Text('My Stats'),
-      subtitle: Text('Wallet cash: 100rs\nNumber of coupons: 2'),
-    ),
-    Expanded(
-    child: Center(
-    body: SingleChildScrollView(
-    child: Column(
-    children: [
-    SizedBox(
-    height: 20,
-    ),
-    Row(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: [
-    CouponCard(
-    discount: 'Wallet Cash',
-    ),
-    CouponCard(
-    discount: 'Number of coupons',
-    ),
-    ],
-    ),
-    SizedBox(
-    height: 20,
-    ),
-    Center(
-    child: PieChart(
-    dataMap: const {
-    'Cleanups': 40,
-    'Recycle': 30,
-    'Donation': 30,
-    },
-    chartLegendSpacing: 32,
-    chartRadius: MediaQuery.of(context).size.width / 3.2,
-    colorList: const [
-    Colors.yellow,
-    Colors.green,
-    Colors.blue,
-    ],
-    initialAngleInDegree: 0,
-    chartType: ChartType.disc,
-    ),
-    ),
-    ),
-    const Row(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: [
-    CouponCard(
-    discount: '10% off',
-    // Other properties here
-    ),
-    CouponCard(
-    discount: '30% off',
-    // Other properties here
-    ),
-    ],
-    ),
-    ],
-    SizedBox(
-    height: 20,
-    ),
-    const RewardSection(),
-    ],
-    ),
-    ),
+                       SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                CouponCard(
+                  discount: 'Wallet Cash = 100',
+                ),
+                CouponCard(
+                  discount: 'Number of coupons = 10',
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Center(
+              child: PieChart(
+                dataMap: const {
+                  'Cleanups': 40,
+                  'Recycle': 30,
+                  'Donation': 30,
+                },
+                chartLegendSpacing: 32,
+                chartRadius: MediaQuery.of(context).size.width / 3.2,
+                colorList: const [
+                  Colors.yellow,
+                  Colors.green,
+                  Colors.blue,
+                ],
+                initialAngleInDegree: 0,
+                chartType: ChartType.disc,
+              ),
+            ),
+            
+            SizedBox(
+              height: 20,
+            ),
+            const RewardSection(),
+          ],
+        ),
+      ),
     );
   }
 }
 
-
 class CouponCard extends StatelessWidget {
   final String discount;
-  // Other properties here
 
   const CouponCard({Key? key, required this.discount}) : super(key: key);
 
@@ -128,7 +93,7 @@ class RewardItem extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 8),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.brown.shade50, // Background color
+        color: Colors.brown.shade50,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(

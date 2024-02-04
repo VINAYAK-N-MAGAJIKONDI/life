@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../pages/userstat.dart';
+import '../pages/userstats.dart';
 
 class UserInfoWidget extends StatelessWidget {
   final User? user;
