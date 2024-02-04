@@ -3,6 +3,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'map.dart';
 import 'art.dart';
 import 'edu.dart';
+import 'plastic.dart';
+import 'appuses.dart';
+import 'resources.dart';
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
 
@@ -11,6 +14,18 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  final List<String> imageUrls = [
+    'https://www.ukri.org/wp-content/uploads/2020/11/UKRI-171120-UKRI-invests-20m-to-tackle-plastic-waste.jpg',
+    'https://blog.getcova.com/blog/content/images/2022/10/Cova-app.png',
+    'https://th.bing.com/th/id/R.6b9195a56dc748f028f4daffc4e5ab5c?rik=ixlBQDvXcC4Fiw&riu=http%3a%2f%2frefillambassadors.com%2fwp-content%2fuploads%2f2020%2f09%2foceancleanup-portada.jpg&ehk=to4q4W5l%2b%2fikk2HxeWv3D2BtQcfTmkJVG9JOOIhmA74%3d&risl=&pid=ImgRaw&r=0',
+    // Add more image URLs here
+  ];
+
+  final List titles = [
+    'Plastic Pollution and Its Impact',
+    'Know More about our App',
+    'Further Resources and Education',
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,7 +99,7 @@ class _HomepageState extends State<Homepage> {
                 fit: BoxFit.cover,
               ),
               Image.network('https://media.istockphoto.com/id/908255262/photo/traditional-moroccan-market-with-souvenirs.webp?b=1&s=170667a&w=0&k=20&c=fjiXOH2EuAR4BhVZXJBpsQgtd1ssQ15MgrMfsIgw45o=',
-              fit: BoxFit.cover,
+                fit: BoxFit.cover,
               ),
               Image.network('https://media.istockphoto.com/id/517377154/photo/elephant-toys-in-the-shop.webp?b=1&s=170667a&w=0&k=20&c=kJoY1Yh9mOmk0xma7SFBM7FetZ8hoeV8AHJ2ZWHV_OI=',
                 fit: BoxFit.cover,
@@ -120,78 +135,56 @@ class _HomepageState extends State<Homepage> {
                   ),
                 ],
               ),
-              TextButton(
-                onPressed: () {
-                  // Implement the action when the button is pressed
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => edu()),
-                  );
-                },
+            ],
+          ),
 
-                style: TextButton.styleFrom(
-                  textStyle: TextStyle(
-                    color: Colors.blueAccent,
+              Container(
+              child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: 2.0,
+                  mainAxisSpacing: 25,
                   ),
-                ),
-                child: Text('View All'),
-              ),
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              // First Row: Plastic Pollution and Its Impact
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Text(
-                  'Plastic Pollution and Its Impact',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Text(
-                  'Plastic pollution is a global environmental issue.',
-                  textAlign: TextAlign.start,
-                ),
-              ),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  itemCount: imageUrls.length,
+                  itemBuilder: (context, index) {
+                  return InkWell(
+                      onTap: () {
+                        if (index == 0) {
+                          Navigator.push(context, MaterialPageRoute(builder: (_) => plastic()));
+                        } else if (index == 1) {
+                          Navigator.push(context, MaterialPageRoute(builder: (_) => appuses()));
+                        } else if (index == 2) {
+                          Navigator.push(context, MaterialPageRoute(builder: (_) => resources()));
+                        }
+                      },
+                      child: Container(
+                        margin: EdgeInsets.symmetric (vertical: 20, horizontal: 12),
 
-              // Second Row: App and Its Uses
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Text(
-                  'App and Its Uses',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Text(
-                  'Provides information on plastic pollution, recycling tips, and many more',
-                  textAlign: TextAlign.start,
-                ),
-              ),
-
-              // Third Row: Further Resources and Education
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Text(
-                  'Further Resources and Education',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Text(
-                  'Explore our educational resources, articles, and videos.',
-                  textAlign: TextAlign.start,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
+                      child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                        Image.network(imageUrls[index],
+                  width: 112,
+                  ),
+                        Text(
+                  titles[index],
+                  style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  ),
+    )
+    ],
+    ),
+    ),
     );
+    },
+    ),
+
+    ),
+    ],
+    ),
+      );
   }
 }

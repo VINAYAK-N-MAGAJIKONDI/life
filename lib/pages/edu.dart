@@ -11,29 +11,37 @@ import 'package:url_launcher/url_launcher.dart';
 class edu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MainScreen(),
+      title: 'EDUCATIONAL RESOURCES',
+      theme: appTheme,
+    );
+  }
+}
+ThemeData appTheme = ThemeData(
+  fontFamily: 'Oxygen',
+  primaryColor: Colors.purpleAccent,
+);
+
+class MainScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('EDUCATIONAL RESOURCES'),
+        title: const Text('EDUCATIONAL RESOURCES'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // First Row: Plastic Pollution and Its Impact
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'Plastic Pollution and Its Impact',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
+      body: ListView(
+        scrollDirection: Axis.vertical,
+        children: <Widget>[
+          CurvedListItem(
+            title: 'Plastic Pollution and Its Impact',
+            time: 'Plastic pollution - a global environmental issue.',
+            color: Colors.red,
+            nextColor: Colors.yellow,
+            icon: Icons.info,
+            people:'' ,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text(
-              'Plastic pollution is a global environmental issue. It harms marine life, disrupts ecosystems, and affects human health. We must reduce plastic waste and promote sustainable alternatives.',
-              textAlign: TextAlign.center,
-            ),
-          ),
-          TextButton(
+          ElevatedButton(
             onPressed: () {
               // Implement the action when the button is pressed
               Navigator.push(
@@ -42,30 +50,21 @@ class edu extends StatelessWidget {
               );
             },
 
-            style: TextButton.styleFrom(
-              textStyle: TextStyle(
-                color: Colors.blueAccent,
-              ),
+
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.red),
             ),
             child: Text('View'),
           ),
-
-          // Second Row: App and Its Uses
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'App and Its Uses',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
+          CurvedListItem(
+            title: 'App and Its Uses',
+            time: ' Information on plastic pollution, recycling tips, and many more',
+            color: Colors.green,
+            nextColor: Colors.yellow,
+              icon: Icons.info,
+              people:''
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text(
-              'Our app provides information on plastic pollution, recycling tips, and eco-friendly alternatives. Users can track their plastic usage and learn how to make a positive impact.',
-              textAlign: TextAlign.center,
-            ),
-          ),
-          TextButton(
+          ElevatedButton(
             onPressed: () {
               // Implement the action when the button is pressed
               Navigator.push(
@@ -74,30 +73,19 @@ class edu extends StatelessWidget {
               );
             },
 
-            style: TextButton.styleFrom(
-              textStyle: TextStyle(
-                color: Colors.blueAccent,
-              ),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.green),
             ),
             child: Text('View'),
           ),
-
-          // Third Row: Further Resources and Education
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'Further Resources and Education',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
+          CurvedListItem(
+            title: 'Further Resources and Education',
+            time: 'Explore our educational resources, articles, and videos.',
+            color: Colors.blue, nextColor: Colors.yellow,
+              icon: Icons.info,
+              people:''
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text(
-              'Explore our educational resources, articles, and videos. Learn about sustainable living, participate in clean-up drives, and spread awareness about plastic pollution.',
-              textAlign: TextAlign.center,
-            ),
-          ),
-          TextButton(
+          ElevatedButton(
             onPressed: () {
               // Implement the action when the button is pressed
               Navigator.push(
@@ -106,17 +94,71 @@ class edu extends StatelessWidget {
               );
             },
 
-            style: TextButton.styleFrom(
-              textStyle: TextStyle(
-                color: Colors.blueAccent,
-              ),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.blue),
             ),
             child: Text('View'),
           ),
         ],
       ),
+    );
+  }
+}
 
-    );}}
+class CurvedListItem extends StatelessWidget {
+  const CurvedListItem({
+    required this.title,
+    required this.time,
+    required this.icon,
+    required this.people,
+    required this.color,
+    required this.nextColor,
+  });
+
+  final String title;
+  final String time;
+  final String people;
+  final IconData icon;
+  final Color color;
+  final Color nextColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: nextColor,
+      child: Container(
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(80.0),
+          ),
+        ),
+        padding: const EdgeInsets.only(
+          left: 32,
+          top: 80.0,
+          bottom: 50,
+        ),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                time,
+                style: TextStyle(color: Colors.white, fontSize: 12),
+              ),
+
+              Text(
+                title,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold),
+              ),
+              Row(),
+            ]),
+      ),
+    );
+  }
+}
 
 
 
