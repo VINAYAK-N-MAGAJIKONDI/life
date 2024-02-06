@@ -3,8 +3,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'map.dart';
 import 'art.dart';
 import 'plastic.dart';
-import 'appuses.dart';
-import 'resources.dart';
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
 
@@ -13,21 +11,10 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  final List<String> imageUrls = [
-    'https://www.ukri.org/wp-content/uploads/2020/11/UKRI-171120-UKRI-invests-20m-to-tackle-plastic-waste.jpg',
-    'https://blog.getcova.com/blog/content/images/2022/10/Cova-app.png',
-    'https://th.bing.com/th/id/R.6b9195a56dc748f028f4daffc4e5ab5c?rik=ixlBQDvXcC4Fiw&riu=http%3a%2f%2frefillambassadors.com%2fwp-content%2fuploads%2f2020%2f09%2foceancleanup-portada.jpg&ehk=to4q4W5l%2b%2fikk2HxeWv3D2BtQcfTmkJVG9JOOIhmA74%3d&risl=&pid=ImgRaw&r=0',
-    // Add more image URLs here
-  ];
-
-  final List titles = [
-    'Plastic Pollution and Its Impact',
-    'Know More about our App',
-    'Further Resources and Education',
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black12,
       appBar: AppBar(
         backgroundColor: Colors.blueAccent,
         title: Text(
@@ -74,7 +61,7 @@ class _HomepageState extends State<Homepage> {
                   ),
                 ],
               ),
-              TextButton(
+              ElevatedButton(
                 onPressed: () {
                   // Implement the action when the button is pressed
                   Navigator.push(
@@ -82,11 +69,9 @@ class _HomepageState extends State<Homepage> {
                   MaterialPageRoute(builder: (context) => art()),
     );
     },
-
-                style: TextButton.styleFrom(
-                  textStyle: TextStyle(
-                    color: Colors.blueAccent,
-                  ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue[200],
+                  foregroundColor: Colors.black,
                 ),
                 child: Text('View All'),
               ),
@@ -135,53 +120,98 @@ class _HomepageState extends State<Homepage> {
                   ),
                 ],
               ),
+              ElevatedButton(
+                onPressed: () {
+                  // Implement the action when the button is pressed
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => plastic()),
+                  );
+                },
+
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue[200],
+                  foregroundColor: Colors.black,
+                ),
+                child: Text('View All'),
+              ),
             ],
           ),
           Container(
-              child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 1,
-                  childAspectRatio: 2.8,
-                  mainAxisSpacing: 0.56,
-                  ),
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  itemCount: imageUrls.length,
-                  itemBuilder: (context, index) {
-                  return InkWell(
-                      onTap: () {
-                        if (index == 0) {
-                          Navigator.push(context, MaterialPageRoute(builder: (_) => plastic()));
-                        } else if (index == 1) {
-                          Navigator.push(context, MaterialPageRoute(builder: (_) => appuses()));
-                        } else if (index == 2) {
-                          Navigator.push(context, MaterialPageRoute(builder: (_) => resources()));
-                        }
-                      },
-                      child: Container(
-                        margin: EdgeInsets.symmetric (vertical: 20, horizontal: 12),
+              child:  ListTile(
+                contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.0),
+                leading: Container(
+                  padding: EdgeInsets.only(right: 12.0),
+                  decoration: new BoxDecoration(
+                      border: new Border(
+                          right: new BorderSide(width: 1.0, color: Colors.blue))),
+                  child: Icon(Icons.water_drop_sharp, color: Colors.lightBlue),
+                ),
+                title: Text(
+                  "Plastic Pollution and It's Impact",
+                  style: TextStyle(color: Colors.grey[700], fontWeight: FontWeight.bold),
+                ),
+                // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
 
-                      child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                        Image.network(imageUrls[index],
-                  width: 115,
-                  ),
-                        Text(
-                  titles[index],
-                  style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  ),
-    )
-    ],
-    ),
-    ),
-    );
-    },
-    ),
+                subtitle: Row(
+                  children: <Widget>[
+                    Text("Plastic Pollution - A Global Environmental Issue.", style: TextStyle(color: Colors.indigo))
+                  ],
+                ),
+
 
     ),
+          ),
+          Container(
+            child:  ListTile(
+              contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.0),
+              leading: Container(
+                padding: EdgeInsets.only(right: 12.0),
+                decoration: new BoxDecoration(
+                    border: new Border(
+                        right: new BorderSide(width: 1.0, color: Colors.blue))),
+                child: Icon(Icons.water_drop_sharp, color: Colors.lightBlue),
+              ),
+              title: Text(
+                "App and Its Uses",
+                style: TextStyle(color: Colors.grey[700], fontWeight: FontWeight.bold),
+              ),
+              // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
+
+              subtitle: Row(
+                children: <Widget>[
+                  Text("Know More about our App and it's Future", style: TextStyle(color: Colors.indigo))
+                ],
+              ),
+
+
+            ),
+          ),
+          Container(
+            child:  ListTile(
+              contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.0),
+              leading: Container(
+                padding: EdgeInsets.only(right: 12.0),
+                decoration: new BoxDecoration(
+                    border: new Border(
+                        right: new BorderSide(width: 1.0, color: Colors.blue))),
+                child: Icon(Icons.water_drop_sharp, color: Colors.lightBlue),
+              ),
+              title: Text(
+                "Further Resources and Education",
+                style: TextStyle(color: Colors.grey[700], fontWeight: FontWeight.bold),
+              ),
+              // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
+
+              subtitle: Row(
+                children: <Widget>[
+                  Text("Explore educational resources, articles, and videos.", style: TextStyle(color: Colors.indigo))
+                ],
+              ),
+
+
+            ),
+          ),
 
 
     ],
