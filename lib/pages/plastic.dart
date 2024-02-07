@@ -100,18 +100,18 @@ class SectionWidget extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(icon, color: Colors.white), // Display icon
+              Icon(icon, color: Colors.black87), // Display icon
               SizedBox(width: 10.0),
               Text(
                 title,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white), // Change text color
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black87), // Change text color
               ),
             ],
           ),
           SizedBox(height: 8.0),
           Text(
             content,
-            style: TextStyle(color: Colors.white), // Change text color
+            style: TextStyle(color: Colors.black87), // Change text color
           ),
           SizedBox(height: 12.0),
           Container(
