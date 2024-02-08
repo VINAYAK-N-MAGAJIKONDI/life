@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'map.dart';
 import 'art.dart';
 import 'plastic.dart';
+import 'donate.dart';
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
 
@@ -104,6 +105,61 @@ class _HomepageState extends State<Homepage> {
               reverse: true,
             ),
           ),
+
+          SizedBox(height: 16.0),
+
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => donate()),
+                );
+              },
+              child: Container(
+                padding: EdgeInsets.all(1.0),
+                decoration: BoxDecoration(
+                  color: Colors.yellow[800],
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(
+                      Icons.monetization_on,
+                      color: Colors.white,
+                      size: 45.0,
+                    ),
+                    SizedBox(width: 16.0),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Fund a Solution',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 24.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 3.0),
+                          Text(
+                            'Fund/Donate for Good',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+          SizedBox(height: 16.0),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -212,6 +268,8 @@ class _HomepageState extends State<Homepage> {
 
             ),
           ),
+
+
 
 
     ],
