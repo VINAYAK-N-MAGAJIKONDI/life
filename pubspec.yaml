@@ -57,7 +57,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
 
 
-
+  cloud_firestore:
   fl_chart:
   yaml: ^3.0.0
 

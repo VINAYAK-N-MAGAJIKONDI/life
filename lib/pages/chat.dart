@@ -1,71 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:google_gemini/google_gemini.dart';
-import 'dart:io';
 import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+import '../widgets/gappbar.dart';
 
-const apiKey = "AIzaSyCx6S4TLaj3PiE1GWc8ZhzWNa2erqp1eQo";
+
+const apiKey = "AIzaSyCx6S4TLaj3PiE1GWc8ZhzWNa2erqp1eQo"; // Replace with your actual API key
 const Color aquaBlue = Color(0xFF00FFFF);
 
 class Ai extends StatefulWidget {
-  const Ai({
-    super.key,
-  });
+  const Ai({Key? key}) : super(key: key);
 
   @override
-  State<Ai> createState() => _MyHomePageState();
+  State<Ai> createState() => _AiState();
 }
 
-class _MyHomePageState extends State<Ai> {
+class _AiState extends State<Ai> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: aquaBlue,
-            title: const Text("Chat With Gemini"),
-            centerTitle: true,
-            bottom: const TabBar(
-              tabs: [
-                Tab(text: "Text Only"),
-                Tab(text: "Text with Image"),
-              ],
-            ),
-          ),
-          body: const TabBarView(
-            children: [TextOnly(), TextWithImage()],
-          ),
-        ));
+      length: 2,
+      child: Scaffold(
+        appBar: customAppBar(),
+        body: TextWithImage(),
+      ),
+    );
   }
 }
 
-class TextOnly extends StatefulWidget {
-  const TextOnly({
-    super.key,
-  });
+class TextWithImage extends StatefulWidget {
+  const TextWithImage({Key? key}) : super(key: key);
 
   @override
-  State<TextOnly> createState() => _TextOnlyState();
+  State<TextWithImage> createState() => _TextWithImageState();
 }
 
-class _TextOnlyState extends State<TextOnly> {
+class _TextWithImageState extends State<TextWithImage> {
   bool loading = false;
-  List textChat = [];
-  List textWithImageChat = [];
+  List<Map<String, dynamic>> textAndImageChat = [];
+  File? imageFile;
 
+  final ImagePicker picker = ImagePicker();
   final TextEditingController _textController = TextEditingController();
   final ScrollController _controller = ScrollController();
 
   // Create Gemini Instance
-  final gemini = GoogleGemini(
-    apiKey: apiKey,
-  );
+  final gemini = GoogleGemini(apiKey: apiKey);
 
-  // Text only input
   void fromText({required String query}) {
     setState(() {
       loading = true;
-      textChat.add({
+      textAndImageChat.add({
         "role": "User",
         "text": query,
       });
@@ -76,16 +61,16 @@ class _TextOnlyState extends State<TextOnly> {
     gemini.generateFromText(query).then((value) {
       setState(() {
         loading = false;
-        textChat.add({
+        textAndImageChat.add({
           "role": "Gemini",
           "text": value.text,
         });
       });
       scrollToTheEnd();
-    }).onError((error, stackTrace) {
+    }).catchError((error) {
       setState(() {
         loading = false;
-        textChat.add({
+        textAndImageChat.add({
           "role": "Gemini",
           "text": error.toString(),
         });
@@ -94,113 +79,7 @@ class _TextOnlyState extends State<TextOnly> {
     });
   }
 
-  void scrollToTheEnd() {
-    _controller.jumpTo(_controller.position.maxScrollExtent);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Column(
-          children: [
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Colors.blueGrey.shade100, Colors.white],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ),
-                ),
-                child: ListView.builder(
-                  controller: _controller,
-                  itemCount: textChat.length,
-                  padding: const EdgeInsets.only(bottom: 20),
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      isThreeLine: true,
-                      leading: CircleAvatar(
-                        backgroundColor: aquaBlue,
-                        child: Text(textChat[index]["role"].substring(0, 1)),
-                      ),
-                      title: Text(textChat[index]["role"],
-                          style: TextStyle(color: Colors.black)),
-                      subtitle: Text(textChat[index]["text"],
-                          style: TextStyle(color: Colors.black)),
-                    );
-                  },
-                ),
-              ),
-            ),
-            Container(
-              alignment: Alignment.bottomRight,
-              margin: const EdgeInsets.all(20),
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                border: Border.all(color: Colors.grey),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      controller: _textController,
-                      decoration: InputDecoration(
-                        hintText: "Type a message",
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                            borderSide: BorderSide.none),
-                        fillColor: Colors.transparent,
-                      ),
-                      maxLines: null,
-                      keyboardType: TextInputType.multiline,
-                    ),
-                  ),
-                  IconButton(
-                    icon: loading
-                        ? const CircularProgressIndicator()
-                        : const Icon(Icons.send),
-                    onPressed: () {
-                      fromText(query: _textController.text);
-                    },
-                  ),
-                ],
-              ),
-            )
-          ],
-        ));
-  }
-}
-
-// ------------------------------ Text with Image ------------------------------
-
-class TextWithImage extends StatefulWidget {
-  const TextWithImage({
-    super.key,
-  });
-
-  @override
-  State<TextWithImage> createState() => _TextWithImageState();
-}
-
-class _TextWithImageState extends State<TextWithImage> {
-  bool loading = false;
-  List textAndImageChat = [];
-  List textWithImageChat = [];
-  File? imageFile;
-
-  final ImagePicker picker = ImagePicker();
-
-  final TextEditingController _textController = TextEditingController();
-  final ScrollController _controller = ScrollController();
-
-  // Create Gemini Instance
-  final gemini = GoogleGemini(
-    apiKey: apiKey,
-  );
-
-  // Text only input
-  void fromTextAndImage({required String query, required File image}) {
+  void fromTextAndImage({required String query, File? image}) {
     setState(() {
       loading = true;
       textAndImageChat.add({
@@ -213,27 +92,41 @@ class _TextWithImageState extends State<TextWithImage> {
     });
     scrollToTheEnd();
 
-    gemini.generateFromTextAndImages(query: query, image: image).then((value) {
+    if (image != null) {
+      gemini
+          .generateFromTextAndImages(query: query, image: image)
+          .then((value) {
+        setState(() {
+          loading = false;
+          textAndImageChat.add({
+            "role": "Gemini",
+            "text": value.text,
+            "image": "",
+          });
+        });
+        scrollToTheEnd();
+      }).catchError((error) {
+        setState(() {
+          loading = false;
+          textAndImageChat.add({
+            "role": "Gemini",
+            "text": error.toString(),
+            "image": "",
+          });
+        });
+        scrollToTheEnd();
+      });
+    } else {
+      // Handle the case where no image is selected
       setState(() {
         loading = false;
         textAndImageChat.add({
           "role": "Gemini",
-          "text": value.text,
-          "image": "",
+          "text": "No image selected",
+          "image": null,
         });
       });
-      scrollToTheEnd();
-    }).onError((error, stackTrace) {
-      setState(() {
-        loading = false;
-        textAndImageChat.add({
-          "role": "Gemini",
-          "text": error.toString(),
-          "image": "",
-        });
-      });
-      scrollToTheEnd();
-    });
+    }
   }
 
   void scrollToTheEnd() {
@@ -259,26 +152,48 @@ class _TextWithImageState extends State<TextWithImage> {
                 itemCount: textAndImageChat.length,
                 padding: const EdgeInsets.only(bottom: 20),
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    isThreeLine: true,
-                    leading: CircleAvatar(
-                      backgroundColor: aquaBlue,
-                      child:
-                      Text(textAndImageChat[index]["role"].substring(0, 1)),
+                  return Card(
+                    color: Colors.grey.shade900,
+                    elevation: 0,
+                    margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    title: Text(textAndImageChat[index]["role"],
-                        style: TextStyle(color: Colors.black)),
-                    subtitle: Text(textAndImageChat[index]["text"],
-                        style: TextStyle(color: Colors.black)),
-                    trailing: textAndImageChat[index]["image"] == ""
-                        ? null
-                        : Image.file(
-                      textAndImageChat[index]["image"],
-                      width: 90,
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.all(16),
+                      leading: CircleAvatar(
+                        backgroundColor: aquaBlue,
+                        child: Text(
+                          textAndImageChat[index]["role"].substring(0, 1),
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                      title: Text(
+                        textAndImageChat[index]["role"],
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      subtitle: Text(
+                        textAndImageChat[index]["text"],
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      trailing: textAndImageChat[index]["image"] == null
+                          ? null
+                          : Container(
+                        width: 90,
+                        height: 90,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          image: DecorationImage(
+                            image: FileImage(textAndImageChat[index]["image"] as File),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
                     ),
                   );
                 },
-              ),
+              )
+              ,
             ),
           ),
           Container(
@@ -297,8 +212,9 @@ class _TextWithImageState extends State<TextWithImage> {
                     decoration: InputDecoration(
                       hintText: "Write a message",
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide.none),
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide.none,
+                      ),
                       fillColor: Colors.transparent,
                     ),
                     maxLines: null,
@@ -309,7 +225,7 @@ class _TextWithImageState extends State<TextWithImage> {
                   icon: const Icon(Icons.add_a_photo),
                   onPressed: () async {
                     final XFile? image =
-                    await picker.pickImage(source: ImageSource.gallery);
+                        await picker.pickImage(source: ImageSource.gallery);
                     setState(() {
                       imageFile = image != null ? File(image.path) : null;
                     });
@@ -320,15 +236,19 @@ class _TextWithImageState extends State<TextWithImage> {
                       ? const CircularProgressIndicator()
                       : const Icon(Icons.send),
                   onPressed: () {
-                    if (imageFile == null) {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text("Please select an image")));
-                      return;
+                    if (_textController.text.isNotEmpty || imageFile != null) {
+                      if (imageFile == null) {
+                        fromText(query: _textController.text);
+                      } else {
+                        fromTextAndImage(
+                          query: _textController.text,
+                          image: imageFile,
+                        );
+                      }
                     }
-                    fromTextAndImage(
-                        query: _textController.text, image: imageFile!);
                   },
                 ),
+
               ],
             ),
           ),
@@ -336,10 +256,10 @@ class _TextWithImageState extends State<TextWithImage> {
       ),
       floatingActionButton: imageFile != null
           ? Container(
-        margin: const EdgeInsets.only(bottom: 80),
-        height: 150,
-        child: Image.file(imageFile ?? File("")),
-      )
+              margin: const EdgeInsets.only(bottom: 80),
+              height: 150,
+              child: Image.file(imageFile!),
+            )
           : null,
     );
   }

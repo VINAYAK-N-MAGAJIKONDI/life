@@ -15,7 +15,7 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black12,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.blueAccent,
         title: Text(
@@ -261,7 +261,7 @@ class _HomepageState extends State<Homepage> {
 
               subtitle: Row(
                 children: <Widget>[
-                  Text("Explore educational resources, articles, and videos.", style: TextStyle(color: Colors.indigo))
+                  Text("Explore educational resources", style: TextStyle(color: Colors.indigo))
                 ],
               ),
 

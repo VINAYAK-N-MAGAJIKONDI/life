@@ -31,7 +31,7 @@ class _homepageState extends State<homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _user != null ? base() : base()//signinpage(),
+      body: _user != null ? base() : signinpage(),
     );
   }
 
