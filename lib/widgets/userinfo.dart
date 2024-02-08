@@ -57,6 +57,7 @@ class UserInfoWidget extends StatelessWidget {
           Expanded(
             child: ProfilePage(),
           ),
+
         ],
       ),
     );

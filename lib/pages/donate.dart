@@ -109,8 +109,3 @@ class DonationCard extends StatelessWidget {
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: donate(),
-  ));
-}

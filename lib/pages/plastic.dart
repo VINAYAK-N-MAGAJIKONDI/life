@@ -8,7 +8,7 @@ class plastic extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Plastic Pollution Resources'),
+          title: Text('Explore'),
           backgroundColor: Colors.blue, // Change app bar color
         ),
         body: FeedPage(),

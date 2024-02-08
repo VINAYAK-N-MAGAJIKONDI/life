@@ -19,7 +19,7 @@ class _HomepageState extends State<Homepage> {
       appBar: AppBar(
         backgroundColor: Colors.blueAccent,
         title: Text(
-          'Discover Projects',
+          'Discover',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.white,
