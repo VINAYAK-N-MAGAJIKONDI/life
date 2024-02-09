@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
-
 class CleanupLocation {
   final String name;
   final String date;
@@ -12,7 +10,6 @@ class CleanupLocation {
   final String imageUrl;
   final String organizer;
   final String contact;
-
 
   CleanupLocation({
     required this.name,
@@ -25,8 +22,6 @@ class CleanupLocation {
     required this.contact,
   });
 }
-
-
 
 class CleanupLocationsScreen extends StatelessWidget {
   final List<CleanupLocation> cleanupLocations = [
@@ -93,34 +88,50 @@ class CleanupLocationsScreen extends StatelessWidget {
       body: ListView.builder(
         itemCount: cleanupLocations.length,
         itemBuilder: (context, index) {
-          return ListTile(
-            leading: Image.network(
-              cleanupLocations[index].imageUrl,
-              width: 150, // Adjust the width as needed
-              height: 500, // Adjust the height as needed
-              fit: BoxFit.cover, // You can use BoxFit.contain, BoxFit.fill, or other BoxFit values
-            ),
-
-            title: Text(cleanupLocations[index].name, style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.blue[800],
-              decoration: TextDecoration.underline,
-            ),),
-            subtitle: Text("${cleanupLocations[index].description}\n ${cleanupLocations[index].date} ${cleanupLocations[index].time}\n${cleanupLocations[index].organizer} \n${cleanupLocations[index].contact} ", style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),),
-            onTap: () => _launchMap(context, cleanupLocations[index]),
+          return Row(
+            children: [
+              SizedBox(
+                width: 100, // Width of the image
+                height: 125, // Height same as the list height
+                child: Image.network(
+                  cleanupLocations[index].imageUrl,
+                  fit: BoxFit.cover, // Fill the entire space
+                ),
+              ),
+              Expanded(
+                child: Card(
+                  child: ListTile(
+                    title: Text(
+                      cleanupLocations[index].name,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue[800],
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                    subtitle: Text(
+                      "${cleanupLocations[index].description}\n ${cleanupLocations[index].date} ${cleanupLocations[index].time}\n${cleanupLocations[index].organizer} \n${cleanupLocations[index].contact} ",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    onTap: () =>
+                        _launchMap(context, cleanupLocations[index]),
+                  ),
+                ),
+              ),
+            ],
           );
         },
       ),
     );
-
   }
 
-  Future<void> _launchMap(BuildContext context, CleanupLocation location) async {
+  Future<void> _launchMap(
+      BuildContext context, CleanupLocation location) async {
     String mapUrl = location.mapUrl;
 
     if (await canLaunch(mapUrl)) {
@@ -134,3 +145,5 @@ class CleanupLocationsScreen extends StatelessWidget {
     }
   }
 }
+
+
