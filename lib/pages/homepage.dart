@@ -12,6 +12,28 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  int _currentIndex = 0;
+  final List<String> imageUrls = [
+    'https://images.unsplash.com/photo-1633319377690-fa954d0fb59c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NHxSR3dYMmJMZnZLTXx8ZW58MHx8fHx8',
+    'https://media.istockphoto.com/id/1004792742/photo/megalodon-scene-3d-illustration.jpg?s=612x612&w=0&k=20&c=32FRpoHx1Ff1o1FU2OPr1twOftSeuYhTpofqz_DSPK8=',
+    'https://images.unsplash.com/photo-1581446825137-f07a81380ead?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXw2Mjc1NjN8fGVufDB8fHx8fA%3D%3D',
+    'https://images.unsplash.com/photo-1575467252250-c0e889b69d2b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fEdNJTIwQkFDVEVSSUF8ZW58MHx8MHx8fDA%3D',
+  ];
+
+  final List<String> titles = [
+    'Great Barrier reef Coral spawning',
+    'Shark Attacks',
+    'Microparticles in Marine Snow',
+    'Genetically Modified Bacteria',
+  ];
+
+  final List<String> descriptions = [
+    'Climate change is significantly impacting\n the Great Barrier Reef,\n including its coral spawning events.',
+    'An increase in unprovoked shark attacks\n worldwide in 2023 compared\n to the previous year.',
+    'These tiny particles pose a threat to marine\n ecosystems and contribute to pollution\n affecting arctic food web.',
+    'Researchers have genetically modified a marine\n bacterium called Vibrio natriegens\n to break down plastic in saline water.',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,56 +75,77 @@ class _HomepageState extends State<Homepage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Arts and Crafts',
+                    'LATEST ',
                     style: TextStyle(
-                      fontSize: 24.0,
+                      fontSize: 26.0,
                       fontWeight: FontWeight.bold,
 
                     ),
                   ),
                 ],
               ),
-              ElevatedButton(
-                onPressed: () {
-                  // Implement the action when the button is pressed
-                  Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => art()),
-    );
-    },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue[200],
-                  foregroundColor: Colors.black,
-                ),
-                child: Text('View All'),
-              ),
+
             ],
           ),
           CarouselSlider(
-            items: [
-              Image.network(
-                'https://live.staticflickr.com/3484/3824082777_e5b41152dc_n.jpg',
-                fit: BoxFit.cover,
-              ),
-              Image.network('https://media.istockphoto.com/id/908255262/photo/traditional-moroccan-market-with-souvenirs.webp?b=1&s=170667a&w=0&k=20&c=fjiXOH2EuAR4BhVZXJBpsQgtd1ssQ15MgrMfsIgw45o=',
-                fit: BoxFit.cover,
-              ),
-              Image.network('https://media.istockphoto.com/id/517377154/photo/elephant-toys-in-the-shop.webp?b=1&s=170667a&w=0&k=20&c=kJoY1Yh9mOmk0xma7SFBM7FetZ8hoeV8AHJ2ZWHV_OI=',
-                fit: BoxFit.cover,
-              ),
-              Image.network('https://images.unsplash.com/photo-1606689518099-4437c5dd3b21?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTh8MTE0Nzg5MHx8ZW58MHx8fHx8',
-                fit: BoxFit.cover,
-              ),
-              // Add more images as needed
-            ],
+            items: imageUrls.map((imageUrl) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return Stack(
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: EdgeInsets.symmetric(horizontal: 0.0),
+                        decoration: BoxDecoration(
+                          color: Colors.blueAccent,
+                        ),
+                        child: Image.network(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 20,
+                        left: 5,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              titles[_currentIndex],
+                              style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                            Text(
+                              descriptions[_currentIndex],
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
+            }).toList(),
             options: CarouselOptions(
-              height: 180,
-              aspectRatio: 16 / 8,
-              viewportFraction: 0.8,
+              height: 250,
+              aspectRatio: 5 / 8,
+              viewportFraction: 1.0,
               autoPlay: true,
               autoPlayInterval: Duration(seconds: 5),
               autoPlayAnimationDuration: Duration(milliseconds: 800),
-              reverse: true,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  _currentIndex = index;
+                });
+              },
             ),
           ),
 
@@ -118,7 +161,7 @@ class _HomepageState extends State<Homepage> {
               child: Container(
                 padding: EdgeInsets.all(1.0),
                 decoration: BoxDecoration(
-                  color: Colors.yellow[800],
+                  color: Colors.green[600],
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: Row(
@@ -167,7 +210,7 @@ class _HomepageState extends State<Homepage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    ' Educational Resources',
+                    'EXPLORE',
                     style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
@@ -211,7 +254,7 @@ class _HomepageState extends State<Homepage> {
 
                 subtitle: Row(
                   children: <Widget>[
-                    Text("Plastic Pollution - A Global Environmental Issue.", style: TextStyle(color: Colors.indigo))
+                    Text("A Global Environmental Issue.", style: TextStyle(color: Colors.indigo))
                   ],
                 ),
 
