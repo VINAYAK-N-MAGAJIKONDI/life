@@ -7,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 
 class ProfilePage extends StatelessWidget {
+
   final User? user;
   final String? userid;
 
@@ -50,9 +51,9 @@ class ProfilePage extends StatelessWidget {
                     Center(
                       child: PieChart(
                         dataMap: {
-                          'Cleanups': ( (100 * userMap["cleanups"]/(userMap["cleanups"] + userMap["recycle"] + userMap["donation"]))?? 50).toDouble(), // Use 0 if cleanups value is null
-                          'Recycle': ((100 * userMap["recycle"]/(userMap["cleanups"] + userMap["recycle"] + userMap["donation"])) ?? 30).toDouble(),   // Use 0 if recycle value is null
-                          'Donation': ((100 * userMap["donation"]/(userMap["cleanups"] + userMap["recycle"] + userMap["donation"])) ?? 20).toDouble(), // Use 0 if donation value is null
+                          'Cleanups': ((userMap["cleanups"] ?? 0) + (userMap["recycle"] ?? 0) + (userMap["donation"] ?? 0)) > 0 ? (100 * (userMap["cleanups"] ?? 0) / ((userMap["cleanups"] ?? 0) + (userMap["recycle"] ?? 0) + (userMap["donation"] ?? 0))).toDouble() : 0,
+                          'Recycle': ((userMap["cleanups"] ?? 0) + (userMap["recycle"] ?? 0) + (userMap["donation"] ?? 0)) > 0 ? (100 * (userMap["recycle"] ?? 0) / ((userMap["cleanups"] ?? 0) + (userMap["recycle"] ?? 0) + (userMap["donation"] ?? 0))).toDouble() : 0,
+                          'Donation': ((userMap["cleanups"] ?? 0) + (userMap["recycle"] ?? 0) + (userMap["donation"] ?? 0)) > 0 ? (100 * (userMap["donation"] ?? 0) / ((userMap["cleanups"] ?? 0) + (userMap["recycle"] ?? 0) + (userMap["donation"] ?? 0))).toDouble() : 0,
                         },
                         chartLegendSpacing: 32,
                         chartRadius: MediaQuery.of(context).size.width / 3.2,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 import 'base.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -13,6 +14,7 @@ class homepage extends StatefulWidget {
 }
 
 class _homepageState extends State<homepage> {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   User? _user;
@@ -84,8 +86,15 @@ class _homepageState extends State<homepage> {
         print("Signing in with popup...");
         UserCredential userCredential =
             await _auth.signInWithPopup(_googleprovider);
-        print("Signed in with popup");
+        print("Signed in with popup"+userCredential.additionalUserInfo!.isNewUser.toString());
         User? user = userCredential.user;
+        if(userCredential.additionalUserInfo!.isNewUser){
+          await _initializeUserData(user!.uid);
+
+        }
+        print(userCredential.additionalUserInfo!.isNewUser.toString() + "hello this is state ");
+
+
 
         setState(() {
           _user = user;
@@ -105,12 +114,40 @@ class _homepageState extends State<homepage> {
         print("Signed in on Android");
         User? user = userCredential.user;
 
+        if(userCredential.additionalUserInfo!.isNewUser){
+          await _initializeUserData(user!.uid);
+
+        }
+
         setState(() {
           _user = user;
         });
       }
     } catch (error) {
       print("Error signing in: $error");
+    }
+  }
+  Future<void> _initializeUserData(String uid) async {
+    try {
+      await _firestore.collection('users').doc(uid).set({
+        'uid': _auth.currentUser?.uid,
+        'cash': 0,
+        'cleanups': 0,
+        'donations': 0,
+        'coupans': 1,
+        'recycle': 0,
+        // Add other standard user details here
+      });
+      await _firestore.collection('rewards').doc(uid).set({
+        'uid': _auth.currentUser?.uid,
+        'brand': 'Marine Marvel',
+        'discount': 50,
+
+        // Add other standard user details here
+      });
+
+    } catch (e) {
+      print('Error initializing user data: $e');
     }
   }
 

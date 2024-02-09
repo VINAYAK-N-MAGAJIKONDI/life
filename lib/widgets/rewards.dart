@@ -79,7 +79,7 @@ class RewardSections extends StatelessWidget {
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return Text('No reward data found');
+          return Text('No Rewards Yet');
         } else {
           List<Reward> rewards = snapshot.data!.docs.map((doc) {
             Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
