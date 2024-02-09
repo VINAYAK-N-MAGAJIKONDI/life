@@ -9,7 +9,13 @@ class plastic extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: Text('Explore'),
-          backgroundColor: Colors.blue, // Change app bar color
+          backgroundColor: Colors.blue,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back), // Add arrow back icon
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),// Change app bar color
         ),
         body: FeedPage(),
       ),
