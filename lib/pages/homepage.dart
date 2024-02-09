@@ -161,7 +161,7 @@ class _HomepageState extends State<Homepage> {
               child: Container(
                 padding: EdgeInsets.all(1.0),
                 decoration: BoxDecoration(
-                  color: Colors.green[600],
+                  color: Colors.blue[100],
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: Row(
@@ -169,7 +169,7 @@ class _HomepageState extends State<Homepage> {
                   children: [
                     Icon(
                       Icons.monetization_on,
-                      color: Colors.white,
+                      color: Colors.black87,
                       size: 45.0,
                     ),
                     SizedBox(width: 16.0),
@@ -180,7 +180,7 @@ class _HomepageState extends State<Homepage> {
                           Text(
                             'Fund a Solution',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black87,
                               fontSize: 24.0,
                               fontWeight: FontWeight.bold,
                             ),
@@ -189,7 +189,7 @@ class _HomepageState extends State<Homepage> {
                           Text(
                             'Fund/Donate for Good',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black87,
                               fontSize: 16.0,
                             ),
                           ),
