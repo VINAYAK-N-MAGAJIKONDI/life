@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 
 class plastic extends StatelessWidget {
   @override
@@ -25,36 +25,41 @@ class FeedPage extends StatelessWidget {
         SectionWidget(
           title: "Causes of Plastic Pollution",
           content: "Learn about the various causes of plastic pollution...",
-          videoId: "VIDEO_ID_1",
-          backgroundColor: Colors.white70, // Change section background color
+          videoUrl: "https://youtu.be/Hq7kjC3jzyE",
+          backgroundColor: Colors.white70,
+          // Change section background color
           icon: Icons.eco, // Add an icon
         ),
         SectionWidget(
           title: "Impact on Marine Life",
           content: "Discover how plastic pollution affects marine ecosystems...",
-          videoId: "VIDEO_ID_2",
-          backgroundColor: Colors.white30, // Change section background color
+          videoUrl: "https://youtu.be/Hq7kjC3jzyE?si=9jjKXdEiKq56n5zE",
+          backgroundColor: Colors.white30,
+          // Change section background color
           icon: Icons.water_damage, // Add an icon
         ),
         SectionWidget(
           title: "Solutions to Plastic Pollution",
           content: "Explore solutions to reduce plastic pollution...",
-          videoId: "VIDEO_ID_3",
-          backgroundColor: Colors.white38, // Change section background color
+          videoUrl: "https://youtu.be/ODni_Bey154?si=6UWlpALShu-rYRy7",
+          backgroundColor: Colors.white38,
+          // Change section background color
           icon: Icons.cleaning_services, // Add an icon
         ),
         SectionWidget(
           title: "App uses",
           content: "what is the uses of our app",
-          videoId: "VIDEO_ID_2",
-          backgroundColor: Colors.white54, // Change section background color
+          videoUrl: "https://youtu.be/HQTUWK7CM-Y?si=-m4HAM12MOR0uSlQ",
+          backgroundColor: Colors.white54,
+          // Change section background color
           icon: Icons.beach_access, // Add an icon
         ),
         SectionWidget(
           title: "Additional resources",
           content: "The some of additional resourses",
-          videoId: "VIDEO_ID_2",
-          backgroundColor: Colors.white60, // Change section background color
+          videoUrl: "https://youtu.be/Yomf5pBN8dY?si=HmZhEJTTnRqVZDqp",
+          backgroundColor: Colors.white60,
+          // Change section background color
           icon: Icons.book, // Add an icon
         ),
         // Add more SectionWidget for additional sections
@@ -66,20 +71,21 @@ class FeedPage extends StatelessWidget {
 class SectionWidget extends StatelessWidget {
   final String title;
   final String content;
-  final String videoId;
+  final String? videoUrl; // Nullable string
   final Color backgroundColor;
   final IconData icon;
 
   SectionWidget({
     required this.title,
     required this.content,
-    required this.videoId,
+    required this.videoUrl,
     required this.backgroundColor,
     required this.icon,
   });
 
   @override
   Widget build(BuildContext context) {
+    String? videoId = videoUrl != null ? YoutubePlayer.convertUrlToId(videoUrl!) : null;
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
       padding: EdgeInsets.all(16.0),
@@ -114,21 +120,36 @@ class SectionWidget extends StatelessWidget {
             style: TextStyle(color: Colors.black87), // Change text color
           ),
           SizedBox(height: 12.0),
-          Container(
-            height: 200,
-            child: YoutubePlayer(
-              controller: YoutubePlayerController(
-                initialVideoId: videoId,
-                flags: YoutubePlayerFlags(
-                  autoPlay: false,
-                  mute: false,
+          if (videoId != null)
+            InkWell(
+              onTap: () {
+                _launchYoutubeVideo(videoUrl!);
+              },
+              child: Container(
+                height: 200,
+                child: YoutubePlayer(
+                  controller: YoutubePlayerController(
+                    initialVideoId: videoId,
+                    flags: YoutubePlayerFlags(
+                      autoPlay: false,
+                      mute: false,
+                    ),
+                  ),
+                  showVideoProgressIndicator: true,
                 ),
               ),
-              showVideoProgressIndicator: true,
             ),
-          ),
         ],
       ),
     );
+  }
+
+  // Function to launch YouTube video
+  void _launchYoutubeVideo(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

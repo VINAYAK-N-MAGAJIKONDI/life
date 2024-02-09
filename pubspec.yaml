@@ -61,9 +61,9 @@ dependencies:
   fl_chart:
   yaml: ^3.0.0
 
-youtube_player_flutter: ^8.0.0
 
 
+  webview_flutter: ^2.0.14
 
 
 
