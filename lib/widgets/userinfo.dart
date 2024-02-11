@@ -13,7 +13,7 @@ class UserInfoWidget extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "Profile",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.black),
         ),
       ),
       body: Container(
