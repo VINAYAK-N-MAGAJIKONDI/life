@@ -42,9 +42,7 @@ class ProfilePage extends StatelessWidget {
                         CouponCard(
                           discount: 'Wallet Points = ${userMap["cash"]}',
                         ),
-                        CouponCard(
-                          discount: 'User Id = ${userMap["coupans"]}',
-                        ),
+
                       ],
                     ),
                     SizedBox(height: 20),
