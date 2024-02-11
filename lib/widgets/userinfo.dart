@@ -11,10 +11,12 @@ class UserInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue, // Set AppBar color to blue
         title: Text(
-          "Profile",
-          style: TextStyle(color: Colors.black),
+          'Profile',
+          style: TextStyle(color: Colors.white), // Set text color to white
         ),
+
       ),
       body: Container(
         padding: EdgeInsets.all(16.0),
