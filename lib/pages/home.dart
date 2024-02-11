@@ -76,7 +76,6 @@ class _homepageState extends State<homepage> {
     );
   }
 
-// I'm Anagha.
   void _handlegsign() async {
     try {
       GoogleAuthProvider _googleprovider = GoogleAuthProvider();
