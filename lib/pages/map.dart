@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class CleanupLocation {
   final String name;
@@ -24,7 +27,32 @@ class CleanupLocation {
   });
 }
 
-class CleanupLocationsScreen extends StatelessWidget {
+class CleanupLocationsScreen extends StatefulWidget {
+  @override
+  State<CleanupLocationsScreen> createState() => _CleanupLocationsScreenState();
+}
+
+class _CleanupLocationsScreenState extends State<CleanupLocationsScreen> {
+  late User? _user; // Declare user variable
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize the _user variable with the current user
+    _initializeUser();
+  }
+
+  void _initializeUser() async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? currentUser = auth.currentUser;
+
+    if (currentUser != null) {
+      setState(() {
+        _user = currentUser;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +71,7 @@ class CleanupLocationsScreen extends StatelessWidget {
           } else {
             List<Widget> locationWidgets = snapshot.data!.docs.map((doc) {
               Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-              print(data);
+
               return _buildCleanupLocationCard(
                 context,
                 CleanupLocation(
@@ -99,17 +127,58 @@ class CleanupLocationsScreen extends StatelessWidget {
             ),
           ),
           onTap: () => _launchMap(context, location),
+          trailing: IconButton(
+            icon: Icon(Icons.person_add),
+            onPressed: () {
+              if (_user != null) {
+                _registerEvent(context, location);
+              } else {
+                // User is not signed in
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('You need to sign in to register for the event.'),
+                  ),
+                );
+              }
+            },
+          ),
         ),
       ),
     );
   }
 
+  void _registerEvent(BuildContext context, CleanupLocation location) {
+    String userEmail = _user!.email ?? "UserEmail@gmail.com";
+    String username = _user!.displayName ?? "User Name";
+
+    // Send registration data to Firebase
+    FirebaseFirestore.instance.collection("registrations").add({
+      'username': username,
+      'email': userEmail,
+      'event_title': location.name,
+    }).then((value) {
+      // If the registration is successful, show a success message
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Registered successfully!'),
+        ),
+      );
+    }).catchError((error) {
+      // If there's an error, show an error message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Failed to register: $error'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    });
+  }
 
   Future<void> _launchMap(BuildContext context, CleanupLocation location) async {
     String mapUrl = location.mapUrl;
 
-    if (await canLaunch(mapUrl)) {
-      await launch(mapUrl);
+    if (await canLaunchUrlString(mapUrl)) {
+      await launchUrlString(mapUrl);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
