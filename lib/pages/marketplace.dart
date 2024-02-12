@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:life/widgets/rewards.dart';
 
 class MarketplacePage extends StatefulWidget {
   const MarketplacePage({Key? key}) : super(key: key);
@@ -15,7 +14,7 @@ class MarketplacePageState extends State<MarketplacePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue, // Set AppBar color to blue
-        title: Text(
+        title: const Text(
           'Marketplace',
           style: TextStyle(color: Colors.white), // Set text color to white
         ),
@@ -25,15 +24,15 @@ class MarketplacePageState extends State<MarketplacePage> {
         stream: FirebaseFirestore.instance.collection("products").snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return Text('No reward data found');
+            return const Text('No reward data found');
           } else {
             List<Product> products = snapshot.data!.docs.map((doc) {
               Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-              print(data);
+
               return Product(
                 id: data['id'],
                 name: data['name'],
@@ -91,7 +90,7 @@ class ProductCard extends StatelessWidget {
         children: [
           Image.network(
             product.imageUrl ?? "https://th.bing.com/th?id=OIP.GMfT3Iyl9sIYkBigPmGGFwHaF7&w=279&h=223&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2",
-            height: 500,
+            height: 300,
             width: double.infinity,
             fit: BoxFit.cover,
           ),

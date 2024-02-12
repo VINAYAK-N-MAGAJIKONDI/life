@@ -5,7 +5,7 @@ import 'dart:io';
 import '../widgets/gappbar.dart';
 
 
-const apiKey = "AIzaSyCx6S4TLaj3PiE1GWc8ZhzWNa2erqp1eQo"; // Replace with your actual API key
+const apiKey = "AIzaSyBwxtvYwbj-SQASGB7A1sgNqiEsE8LMJWo"; // Replace with your actual API key
 const Color aquaBlue = Color(0xFF00FFFF);
 
 class Ai extends StatefulWidget {
@@ -22,7 +22,7 @@ class _AiState extends State<Ai> {
       length: 2,
       child: Scaffold(
         appBar: customAppBar(),
-        body: TextWithImage(),
+        body: const TextWithImage(),
       ),
     );
   }
@@ -152,6 +152,35 @@ class _TextWithImageState extends State<TextWithImage> {
                 itemCount: textAndImageChat.length,
                 padding: const EdgeInsets.only(bottom: 20),
                 itemBuilder: (context, index) {
+                  dynamic image = textAndImageChat[index]["image"];
+                  Widget trailingWidget;
+                  if (image is File) {
+                    trailingWidget = Container(
+                      width: 90,
+                      height: 90,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        image: DecorationImage(
+                          image: FileImage(image),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                  } else if (image is String) {
+                    trailingWidget = Container(
+                      width: 90,
+                      height: 90,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        image: DecorationImage(
+                          image: FileImage(File(image)),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                  } else {
+                    trailingWidget = const SizedBox.shrink(); // or any other default widget
+                  }
                   return Card(
                     color: Colors.grey.shade900,
                     elevation: 0,
@@ -165,37 +194,25 @@ class _TextWithImageState extends State<TextWithImage> {
                         backgroundColor: aquaBlue,
                         child: Text(
                           textAndImageChat[index]["role"].substring(0, 1),
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         ),
                       ),
                       title: Text(
                         textAndImageChat[index]["role"],
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       ),
                       subtitle: Text(
                         textAndImageChat[index]["text"],
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       ),
-                      trailing: textAndImageChat[index]["image"] == null
-                          ? null
-                          : Container(
-                        width: 90,
-                        height: 90,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          image: DecorationImage(
-                            image: FileImage(textAndImageChat[index]["image"] as File),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
+                      trailing: trailingWidget,
                     ),
                   );
                 },
-              )
-              ,
+              ),
             ),
           ),
+          // Remainder of your code...
           Container(
             alignment: Alignment.bottomRight,
             margin: const EdgeInsets.all(20),

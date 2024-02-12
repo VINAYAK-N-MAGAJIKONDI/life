@@ -43,8 +43,8 @@ class _homepageState extends State<homepage> {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-                '../lib/assets/images/under.jpg'), // Replace with your image asset path
-            fit: BoxFit.cover,
+                'under.jpg'), // Replace with your image asset path
+            fit: BoxFit.fill,
           ),
         ),
         child: _googleSigninbutton(),
@@ -58,11 +58,11 @@ class _homepageState extends State<homepage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'MATSYAM',
+            'MARINE MARVEL',
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.bold,
-              color: Colors.white, // Change the color to aqua theme
+              color: Colors.teal, // Change the color to aqua theme
             ),
           ),
           SizedBox(height: 20),
