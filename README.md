@@ -23,10 +23,11 @@ Marine Marvel is a mobile application designed for Android devices to promote ma
 ![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/5f6fa5bb-0668-4bcf-a0f2-878febddbde1)
 ![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/b605ce8a-0381-48e3-9c22-f3d61abcddef)
 ![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/73f62c20-42e7-4183-b088-2f1829014d15)
-![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/9e3a1ec3-da11-4d5b-996e-2f75eef99b98)
+
 
 
 ![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/8f097519-4205-4389-8d36-2f07755b531f)
+![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/9e3a1ec3-da11-4d5b-996e-2f75eef99b98)
 ![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/2ac4e04f-6edc-4126-8331-cf0e23ae88a4)
 
 ![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/e829b9e8-f48f-49bc-9bb7-8142746f1614)
