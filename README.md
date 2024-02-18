@@ -20,24 +20,29 @@ Marine Marvel is a mobile application designed for Android devices to promote ma
 
 ## App Pictures
 
-![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/5f6fa5bb-0668-4bcf-a0f2-878febddbde1)
-![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/b605ce8a-0381-48e3-9c22-f3d61abcddef)
-![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/73f62c20-42e7-4183-b088-2f1829014d15)
+<div style="display: flex; flex-wrap: wrap;">
+    <img src="https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/5f6fa5bb-0668-4bcf-a0f2-878febddbde1" alt="Image 1" style="width: 200px; margin-right: 10px;">
+    <img src="https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/b605ce8a-0381-48e3-9c22-f3d61abcddef" alt="Image 2" style="width: 200px; margin-right: 10px;">
+    <img src="https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/73f62c20-42e7-4183-b088-2f1829014d15" alt="Image 3" style="width: 200px; margin-right: 10px;">
+</div>
 
+<div style="display: flex; flex-wrap: wrap;">
+    <img src="https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/8f097519-4205-4389-8d36-2f07755b531f" alt="Image 4" style="width: 200px; margin-right: 10px;">
+    <img src="https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/9e3a1ec3-da11-4d5b-996e-2f75eef99b98" alt="Image 5" style="width: 200px; margin-right: 10px;">
+    <img src="https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/2ac4e04f-6edc-4126-8331-cf0e23ae88a4" alt="Image 6" style="width: 200px; margin-right: 10px;">
+</div>
 
+<div style="display: flex; flex-wrap: wrap;">
+    <img src="https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/e829b9e8-f48f-49bc-9bb7-8142746f1614" alt="Image 7" style="width: 200px; margin-right: 10px;">
+    <img src="https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/9249713d-fe80-4122-96e5-247466e7af9d" alt="Image 8" style="width: 200px; margin-right: 10px;">
+    <img src="https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/f45a2cbb-9351-4555-ad55-a49c69cc166f" alt="Image 9" style="width: 200px; margin-right: 10px;">
+</div>
 
-![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/8f097519-4205-4389-8d36-2f07755b531f)
-![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/9e3a1ec3-da11-4d5b-996e-2f75eef99b98)
-![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/2ac4e04f-6edc-4126-8331-cf0e23ae88a4)
-
-![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/e829b9e8-f48f-49bc-9bb7-8142746f1614)
-![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/9249713d-fe80-4122-96e5-247466e7af9d)
-![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/f45a2cbb-9351-4555-ad55-a49c69cc166f)
-
-
-![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/35c60f08-79a0-490c-b194-590447ad274d)
-![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/4d4e9178-0bf1-42bd-859b-ad5aa8814ca2)
-![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/954201ac-6cae-4ae3-987e-d05c37f82524)
+<div style="display: flex; flex-wrap: wrap;">
+    <img src="https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/35c60f08-79a0-490c-b194-590447ad274d" alt="Image 10" style="width: 200px; margin-right: 10px;">
+    <img src="https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/4d4e9178-0bf1-42bd-859b-ad5aa8814ca2" alt="Image 11" style="width: 200px; margin-right: 10px;">
+    <img src="https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/954201ac-6cae-4ae3-987e-d05c37f82524" alt="Image 12" style="width: 200px; margin-right: 10px;">
+</div>
 
 
 
