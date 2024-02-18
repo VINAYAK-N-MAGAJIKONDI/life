@@ -20,7 +20,23 @@ Marine Marvel is a mobile application designed for Android devices to promote ma
 
 ## Screenshots
 
-[Add screenshots here]
+![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/5f6fa5bb-0668-4bcf-a0f2-878febddbde1)
+![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/b605ce8a-0381-48e3-9c22-f3d61abcddef)
+![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/73f62c20-42e7-4183-b088-2f1829014d15)
+
+![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/8f097519-4205-4389-8d36-2f07755b531f)
+![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/2ac4e04f-6edc-4126-8331-cf0e23ae88a4)
+![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/e829b9e8-f48f-49bc-9bb7-8142746f1614)
+![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/35c60f08-79a0-490c-b194-590447ad274d)
+![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/4d4e9178-0bf1-42bd-859b-ad5aa8814ca2)
+![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/954201ac-6cae-4ae3-987e-d05c37f82524)
+
+
+
+
+
+
+
 
 ## Installation
 
@@ -47,7 +63,7 @@ We welcome contributions from the community to enhance Marine Marvel. If you hav
 
 Special thanks to the following resources and contributors:
 
-- Icons8 for providing icons used in the app.
-- Marine Biologists for their expertise and contribution to the marine species database.
+- The Net Ninja YouTube channel for their insightful tutorials and guidance on Flutter development.
+- Firebase for providing backend services such as authentication, data storage, and cloud functions, which have been instrumental in the development of the Marine Marvel Android app.
 - Flutter and Firebase communities for their support and resources.
 
