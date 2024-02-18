@@ -18,7 +18,7 @@ Marine Marvel is a mobile application designed for Android devices to promote ma
 8. **Donate to Support Solutions**: Contribute to various NGO and student projects dedicated to marine conservation by donating funds through the app. Support innovative solutions aimed at preserving marine ecosystems and promoting sustainability.
 9. **Explore Page on Plastic Pollution**: Discover the impact of plastic pollution on marine ecosystems through interactive content and educational resources. Learn about the detrimental effects of plastic waste on marine life and habitats, access further resources, and watch educational YouTube videos to deepen your understanding of the issue and explore potential solutions.
 
-## Screenshots
+## App Pictures
 
 ![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/5f6fa5bb-0668-4bcf-a0f2-878febddbde1)
 ![image](https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/b605ce8a-0381-48e3-9c22-f3d61abcddef)
