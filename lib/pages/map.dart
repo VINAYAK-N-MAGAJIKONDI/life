@@ -58,6 +58,14 @@ class _CleanupLocationsScreenState extends State<CleanupLocationsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Cleanup Locations"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              // Implement search functionality here
+            },
+          ),
+        ],
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection("locations").snapshots(),
@@ -69,26 +77,26 @@ class _CleanupLocationsScreenState extends State<CleanupLocationsScreen> {
           } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             return const Center(child: Text('No cleanup locations found'));
           } else {
-            List<Widget> locationWidgets = snapshot.data!.docs.map((doc) {
-              Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+            return ListView.builder(
+              itemCount: snapshot.data!.docs.length,
+              itemBuilder: (context, index) {
+                QueryDocumentSnapshot<Object?> doc = snapshot.data!.docs[index];
+                Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
 
-              return _buildCleanupLocationCard(
-                context,
-                CleanupLocation(
-                  imageUrl: data['imgurl'],
-                  description: data['description'],
-                  name: data['name'],
-                  date: data['date'],
-                  time: data['time'],
-                  organizer: data['organizer'],
-                  contact: data['contact'],
-                  mapUrl: data['mapurl'],
-                ),
-              );
-            }).toList();
-
-            return ListView(
-              children: locationWidgets,
+                return _buildCleanupLocationCard(
+                  context,
+                  CleanupLocation(
+                    imageUrl: data['imgurl'],
+                    description: data['description'],
+                    name: data['name'],
+                    date: data['date'],
+                    time: data['time'],
+                    organizer: data['organizer'],
+                    contact: data['contact'],
+                    mapUrl: data['mapurl'],
+                  ),
+                );
+              },
             );
           }
         },
@@ -97,55 +105,77 @@ class _CleanupLocationsScreenState extends State<CleanupLocationsScreen> {
   }
 
   Widget _buildCleanupLocationCard(BuildContext context, CleanupLocation location) {
-    return Card(
-      child: Container(
-        padding: const EdgeInsets.all(8.0), // Add padding for ListTile
-        child: ListTile(
-          contentPadding: EdgeInsets.zero, // Remove default padding from ListTile
-          leading: SizedBox(
-            width: 100, // Width of the image
-            height: 150, // Height of the image
-            child: Image.network(
-              location.imageUrl,
-              fit: BoxFit.cover, // Fill the entire space
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: 150, // Width of the image
+              height: 150, // Height of the image
+              child: Image.network(
+                location.imageUrl,
+                fit: BoxFit.cover, // Fill the entire space
+              ),
             ),
-          ),
-          title: Text(
-            location.name,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.teal,
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      location.name,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.teal,
+                      ),
+                    ),
+                    Text(
+                      "${location.description}\nDate: ${location.date} Time: ${location.time}\nOrganizer: ${location.organizer} \nContact: ${location.contact} ",
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.person_add),
+                          onPressed: () {
+                            if (_user != null) {
+                              _registerEvent(context, location);
+                            } else {
+                              // User is not signed in
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('You need to sign in to register for the event.'),
+                                ),
+                              );
+                            }
+                          },
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.directions),
+                          onPressed: () => _launchMap(context, location),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
-          subtitle: Text(
-            "${location.description}\nDate: ${location.date} Time: ${location.time}\nOrganizer: ${location.organizer} \nContact: ${location.contact} ",
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
-          ),
-          onTap: () => _launchMap(context, location),
-          trailing: IconButton(
-            icon: Icon(Icons.person_add),
-            onPressed: () {
-              if (_user != null) {
-                _registerEvent(context, location);
-              } else {
-                // User is not signed in
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('You need to sign in to register for the event.'),
-                  ),
-                );
-              }
-            },
-          ),
+          ],
         ),
       ),
     );
   }
+
 
   void _registerEvent(BuildContext context, CleanupLocation location) {
     String userEmail = _user!.email ?? "UserEmail@gmail.com";
