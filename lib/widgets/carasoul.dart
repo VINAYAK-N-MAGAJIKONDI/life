@@ -22,7 +22,6 @@ class LatestCarousel extends StatefulWidget {
 }
 
 class _LatestCarouselState extends State<LatestCarousel> {
-
   List<CarouselData> carouselDataList = [];
 
   @override
@@ -68,26 +67,51 @@ class _LatestCarouselState extends State<LatestCarousel> {
                 Positioned(
                   bottom: 20,
                   left: 5,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        data.title,
-                        style: const TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width - 10,
+                    // Fixed height for description area
+                    height: 100,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          data.title,
+                          style: const TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      Text(
-                        data.description,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                        SizedBox(height: 5),
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: data.description.split('\n').length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.only(left: 5.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Icon(Icons.arrow_right),
+                                    SizedBox(width: 5),
+                                    Expanded(
+                                      child: Text(
+                                        data.description.split('\n')[index],
+                                        style: const TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -103,8 +127,7 @@ class _LatestCarouselState extends State<LatestCarousel> {
         autoPlayInterval: const Duration(seconds: 5),
         autoPlayAnimationDuration: const Duration(milliseconds: 800),
         onPageChanged: (index, reason) {
-          setState(() {
-          });
+          setState(() {});
         },
       ),
     );
