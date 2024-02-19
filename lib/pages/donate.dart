@@ -38,7 +38,6 @@ class donate extends StatelessWidget {
     );
   }
 }
-
 class DonationCard extends StatelessWidget {
   final String imageUrl;
   final String label;
@@ -54,48 +53,53 @@ class DonationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4.0,
-      margin: EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Image.network(
-            imageUrl,
-            fit: BoxFit.cover,
-            height: 200.0, // Adjust height as needed
-          ),
-          Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  label,
-                  style: TextStyle(
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.bold,
+    return Center(
+      child: Card(
+        elevation: 4.0,
+        margin: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Image.network(
+              imageUrl,
+              fit: BoxFit.cover,
+              height: 200.0, // Adjust height as needed
+            ),
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    label,
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    
                   ),
-                ),
-                SizedBox(height: 8.0),
-                Text(
-                  description,
-                  style: TextStyle(fontSize: 16.0),
-                ),
-              ],
+                  SizedBox(height: 8.0),
+                  Text(
+                    description,
+                    style: TextStyle(fontSize: 16.0),
+                    textAlign: TextAlign.justify, // Justify the text
+                  ),
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(16.0),
-            child: ElevatedButton(
-              onPressed: () {
-                // Handle donation or fund button press
-              },
-              child: Text(buttonText),
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle donation or fund button press
+                },
+                child: Text(buttonText),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
+
