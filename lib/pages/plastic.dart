@@ -31,7 +31,7 @@ class FeedPage extends StatelessWidget {
         SectionWidget(
           title: "Causes of Plastic Pollution",
           content: "Learn about the various causes of plastic pollution...",
-          videoUrl: "https://youtu.be/Hq7kjC3jzyE",
+          videoUrl: "https://youtu.be/iDKRA0fAz-k",
           backgroundColor: Colors.white70,
           // Change section background color
           icon: Icons.eco, // Add an icon
