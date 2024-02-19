@@ -64,7 +64,7 @@ dependencies:
 
 
   webview_flutter: ^2.0.14
-
+  flutter_markdown: ^0.6.0
 
 
 

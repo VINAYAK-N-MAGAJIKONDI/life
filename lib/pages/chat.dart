@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart'; // Import flutter_markdown
 import 'package:google_gemini/google_gemini.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import '../widgets/gappbar.dart';
-
 
 const apiKey = "AIzaSyBwxtvYwbj-SQASGB7A1sgNqiEsE8LMJWo"; // Replace with your actual API key
 const Color aquaBlue = Color(0xFF00FFFF);
@@ -27,6 +27,7 @@ class _AiState extends State<Ai> {
     );
   }
 }
+
 
 class TextWithImage extends StatefulWidget {
   const TextWithImage({Key? key}) : super(key: key);
@@ -201,9 +202,12 @@ class _TextWithImageState extends State<TextWithImage> {
                         textAndImageChat[index]["role"],
                         style: const TextStyle(color: Colors.white),
                       ),
-                      subtitle: Text(
-                        textAndImageChat[index]["text"],
-                        style: const TextStyle(color: Colors.white),
+                      subtitle: MarkdownBody(
+                        data: textAndImageChat[index]["text"],
+                        styleSheet: MarkdownStyleSheet(
+                          // Add style for paragraphs
+                          p: TextStyle(color: Colors.white),
+                        ),
                       ),
                       trailing: trailingWidget,
                     ),
@@ -212,7 +216,6 @@ class _TextWithImageState extends State<TextWithImage> {
               ),
             ),
           ),
-          // Remainder of your code...
           Container(
             alignment: Alignment.bottomRight,
             margin: const EdgeInsets.all(20),
@@ -242,7 +245,7 @@ class _TextWithImageState extends State<TextWithImage> {
                   icon: const Icon(Icons.add_a_photo),
                   onPressed: () async {
                     final XFile? image =
-                        await picker.pickImage(source: ImageSource.gallery);
+                    await picker.pickImage(source: ImageSource.gallery);
                     setState(() {
                       imageFile = image != null ? File(image.path) : null;
                     });
@@ -265,7 +268,6 @@ class _TextWithImageState extends State<TextWithImage> {
                     }
                   },
                 ),
-
               ],
             ),
           ),
@@ -273,10 +275,10 @@ class _TextWithImageState extends State<TextWithImage> {
       ),
       floatingActionButton: imageFile != null
           ? Container(
-              margin: const EdgeInsets.only(bottom: 80),
-              height: 150,
-              child: Image.file(imageFile!),
-            )
+        margin: const EdgeInsets.only(bottom: 80),
+        height: 150,
+        child: Image.file(imageFile!),
+      )
           : null,
     );
   }
