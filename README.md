@@ -41,7 +41,8 @@ Marine Marvel is a mobile application designed for Android devices to promote ma
 <div style="display: flex; flex-wrap: wrap;">
     <img src="https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/35c60f08-79a0-490c-b194-590447ad274d" alt="Image 10" style="width: 200px; margin-right: 10px;">
     <img src="https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/4d4e9178-0bf1-42bd-859b-ad5aa8814ca2" alt="Image 11" style="width: 200px; margin-right: 10px;">
-    <img src="https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/954201ac-6cae-4ae3-987e-d05c37f82524" alt="Image 12" style="width: 200px; margin-right: 10px;">
+    <img src="https://github.com/VINAYAK-N-MAGAJIKONDI/life/assets/122464897/af8be734-0ebb-4482-a8fe-5dff69a26a14"
+ style="width: 300px; margin-right: 10px;">
 </div>
 
 
