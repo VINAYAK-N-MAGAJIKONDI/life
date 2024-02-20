@@ -34,12 +34,19 @@ class CleanupLocationsScreen extends StatefulWidget {
 
 class _CleanupLocationsScreenState extends State<CleanupLocationsScreen> {
   late User? _user; // Declare user variable
+  late List<CleanupLocation> _locations;
+  late List<CleanupLocation> _filteredLocations;
+  bool _isSearching = false;
+  TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     // Initialize the _user variable with the current user
     _initializeUser();
+    _locations = [];
+    _filteredLocations = [];
+    _fetchLocations();
   }
 
   void _initializeUser() async {
@@ -53,55 +60,88 @@ class _CleanupLocationsScreenState extends State<CleanupLocationsScreen> {
     }
   }
 
+  void _fetchLocations() async {
+    QuerySnapshot locationsSnapshot =
+    await FirebaseFirestore.instance.collection("locations").get();
+
+    List<CleanupLocation> fetchedLocations = locationsSnapshot.docs.map((doc) {
+      Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+      return CleanupLocation(
+        imageUrl: data['imgurl'],
+        description: data['description'],
+        name: data['name'],
+        date: data['date'],
+        time: data['time'],
+        organizer: data['organizer'],
+        contact: data['contact'],
+        mapUrl: data['mapurl'],
+      );
+    }).toList();
+
+    setState(() {
+      _locations = fetchedLocations;
+      _filteredLocations = fetchedLocations;
+    });
+  }
+
+  void _searchLocations(String query) {
+    setState(() {
+      _filteredLocations = _locations
+          .where((location) =>
+          location.name.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    });
+  }
+
+  void _toggleSearch() {
+    setState(() {
+      _isSearching = !_isSearching;
+      if (!_isSearching) {
+        _searchController.clear();
+        _searchLocations('');
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Cleanup Locations"),
+        title: _isSearching
+            ? TextField(
+          controller: _searchController,
+          decoration: InputDecoration(
+            hintText: 'Search locations...',
+            hintStyle: TextStyle(color: Colors.white),
+          ),
+          style: TextStyle(color: Colors.black),
+          onChanged: _searchLocations,
+        )
+            : Text('Cleanup Locations'),
         actions: [
           IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              // Implement search functionality here
-            },
+            icon: Icon(_isSearching ? Icons.close : Icons.search),
+            onPressed: _toggleSearch,
           ),
         ],
       ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection("locations").snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return const Center(child: Text('No cleanup locations found'));
-          } else {
-            return ListView.builder(
-              itemCount: snapshot.data!.docs.length,
-              itemBuilder: (context, index) {
-                QueryDocumentSnapshot<Object?> doc = snapshot.data!.docs[index];
-                Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-
-                return _buildCleanupLocationCard(
-                  context,
-                  CleanupLocation(
-                    imageUrl: data['imgurl'],
-                    description: data['description'],
-                    name: data['name'],
-                    date: data['date'],
-                    time: data['time'],
-                    organizer: data['organizer'],
-                    contact: data['contact'],
-                    mapUrl: data['mapurl'],
-                  ),
-                );
-              },
-            );
-          }
-        },
-      ),
+      body: _buildLocationsList(_filteredLocations),
     );
+  }
+
+  Widget _buildLocationsList(List<CleanupLocation> locations) {
+    if (locations.isEmpty) {
+      return Center(
+        child: Text('No cleanup locations found'),
+      );
+    } else {
+      return ListView.builder(
+        itemCount: locations.length,
+        itemBuilder: (context, index) {
+          return _buildCleanupLocationCard(context, locations[index]);
+        },
+      );
+    }
   }
 
   Widget _buildCleanupLocationCard(BuildContext context, CleanupLocation location) {
@@ -175,7 +215,6 @@ class _CleanupLocationsScreenState extends State<CleanupLocationsScreen> {
       ),
     );
   }
-
 
   void _registerEvent(BuildContext context, CleanupLocation location) {
     String userEmail = _user!.email ?? "UserEmail@gmail.com";
