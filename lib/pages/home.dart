@@ -130,6 +130,9 @@ class _homepageState extends State<homepage> {
     try {
       await _firestore.collection('users').doc(uid).set({
         'uid': _auth.currentUser?.uid,
+        'name': _auth.currentUser?.displayName,
+        'email':_auth.currentUser?.email,
+        'pic':_auth.currentUser?.photoURL,
         'cash': 0,
         'cleanups': 0,
         'donations': 0,
