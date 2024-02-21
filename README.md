@@ -4,7 +4,7 @@
 
 # Marine Marvel 
 
-Marine Marvel is a mobile application designed for Android devices to promote marine conservation and raise awareness about marine biodiversity and environmental issues. This documentation provides an overview of the features and functionality of the Marine Marvel app.
+Marine Marvel is an Android mobile application aimed at marine conservation, providing educational content, species identification, interactive maps, community engagement forums, volunteer opportunities, challenges with rewards, news updates, and social sharing capabilities. Additionally, it features an admin website for centralized content management, user administration, activity monitoring, and reporting. This comprehensive platform aims to raise awareness, educate, and mobilize users for marine conservation efforts, fostering a global community committed to protecting marine biodiversity and the health of our oceans.
 
 ## Features
 
