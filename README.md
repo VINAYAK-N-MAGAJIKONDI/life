@@ -46,7 +46,20 @@ Marine Marvel is an Android mobile application aimed at marine conservation, pro
 
 
 
+## Marine Marvel Admin Website
 
+The Marine Marvel Admin Website serves as the administrative interface for managing various aspects of the Marine Marvel application:
+
+### Overview
+
+The admin website includes functionalities such as:
+- **Content Management**: Control homepage content, cleanup locations, news articles, funding opportunities, and product listings.
+- **User Administration**: Manage user registrations for cleanup events and administrator accounts.
+- **Activity Monitoring**: Monitor registrations for cleanup events and track user engagement.
+- **Reporting**: Generate reports on app usage statistics, conservation impact, and more.
+
+To access the Marine Marvel Admin Website and contribute to its development, please visit our GitHub repository:
+ [Marine Marvel Admin GitHub Repository](https://github.com/VINAYAK-N-MAGAJIKONDI/Marine-Marvel-Admin-Control).
 
 
 
