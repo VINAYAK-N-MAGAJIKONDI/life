@@ -31,42 +31,42 @@ class FeedPage extends StatelessWidget {
         SectionWidget(
           title: "Causes of Plastic Pollution",
           content: "Learn about the various causes of plastic pollution...",
-          videoUrl: "https://youtu.be/iDKRA0fAz-k",
-          backgroundColor: Colors.white70,
+          videoUrl: "https://youtu.be/ODni_Bey154?si=6UWlpALShu-rYRy7",
+          backgroundColor: Colors.white38,
           // Change section background color
-          icon: Icons.eco, // Add an icon
+         // Add an icon
         ),
         SectionWidget(
           title: "Impact on Marine Life",
           content: "Discover how plastic pollution affects marine ecosystems...",
-          videoUrl: "https://youtu.be/Hq7kjC3jzyE?si=9jjKXdEiKq56n5zE",
-          backgroundColor: Colors.white30,
+          videoUrl: "https://youtu.be/qiXRTA0tYoI?feature=shared",
+          backgroundColor: Colors.white38,
           // Change section background color
-          icon: Icons.water_damage, // Add an icon
+
         ),
         SectionWidget(
           title: "Solutions to Plastic Pollution",
           content: "Explore solutions to reduce plastic pollution...",
-          videoUrl: "https://youtu.be/ODni_Bey154?si=6UWlpALShu-rYRy7",
+          videoUrl: "https://youtu.be/NTbNRL0XNVQ?feature=shared",
           backgroundColor: Colors.white38,
           // Change section background color
-          icon: Icons.cleaning_services, // Add an icon
+
         ),
         SectionWidget(
           title: "App uses",
-          content: "what is the uses of our app",
+          content: "How to keep plastic out of ocean",
           videoUrl: "https://youtu.be/HQTUWK7CM-Y?si=-m4HAM12MOR0uSlQ",
-          backgroundColor: Colors.white54,
+          backgroundColor: Colors.white38,
           // Change section background color
-          icon: Icons.beach_access, // Add an icon
+
         ),
         SectionWidget(
           title: "Additional resources",
           content: "The some of additional resourses",
           videoUrl: "https://youtu.be/Yomf5pBN8dY?si=HmZhEJTTnRqVZDqp",
-          backgroundColor: Colors.white60,
+          backgroundColor: Colors.white38,
           // Change section background color
-          icon: Icons.book, // Add an icon
+
         ),
         // Add more SectionWidget for additional sections
       ],
@@ -79,14 +79,14 @@ class SectionWidget extends StatelessWidget {
   final String content;
   final String? videoUrl; // Nullable string
   final Color backgroundColor;
-  final IconData icon;
+
 
   SectionWidget({
     required this.title,
     required this.content,
     required this.videoUrl,
     required this.backgroundColor,
-    required this.icon,
+
   });
 
   @override
@@ -112,7 +112,7 @@ class SectionWidget extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(icon, color: Colors.black87), // Display icon
+
               SizedBox(width: 10.0),
               Text(
                 title,
